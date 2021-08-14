@@ -1,37 +1,59 @@
 {
-  "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "experimentalDecorators": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
+    "compilerOptions": {
+        "strict": true,
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "lib": [
+            "esnext",
+            "esnext.asynciterable",
+            "dom"
+        ],
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "strictNullChecks": false,
+        "noEmit": true,
+        "removeComments": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "paths": {
+            "~/*": [
+                "./*"
+            ],
+            "assets/*": [
+                "./assets/*"
+            ],
+            "@/*": [
+                "./*"
+            ],
+            "js-cookie": [
+                "node_modules/js-cookie/src/js.cookie.js"
+            ]
+        },
+        "types": [
+            "@nuxt/vue-app",
+            "@types/node",
+            "@nuxt/types",
+            "@types/webpack-env",
+            "@types/resize-observer-browser",
+            "@nuxtjs/toast"
+        ]
     },
-    "types": [
-      "@nuxt/types",
-      "@nuxtjs/axios",
-      "@types/node"
+    "exclude": [
+        "docs",
+        "logs",
+        "setup",
+        "gemini",
+        "node_modules",
+        "**/.nuxt/.*",
+        "**/test/.*",
+        "application/modules/config/plugin.js"
     ]
-  },
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
-  ]
 }
