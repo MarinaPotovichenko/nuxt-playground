@@ -9,6 +9,7 @@
                 <v-btn
                     color="secondary"
                     text
+                    @click="isDescriptionShowed = !isDescriptionShowed"
                 > Details </v-btn>
 
                 <v-spacer></v-spacer>
