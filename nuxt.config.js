@@ -16,26 +16,29 @@ export default {
     },
 
     loading: {
-        color: 'red',
+        color: '#1cf2f3',
     },
 
     css: [{ src: '~/css/main.css', lang: 'postcss' }],
 
-    plugins: [],
+    plugins: ['~/plugins/vuetify.ts'],
 
     build: {
         postcss: {
             plugins: {
+                'postcss-import': {},
                 'postcss-nested': {},
             },
         },
+        vendor: ['vuetify'],
+        transpile: ['vue-cli-plugin-vuetify-preset-reply'],
     },
 
     components: true,
 
     buildModules: ['@nuxt/typescript-build', '@nuxtjs/stylelint-module'],
 
-    modules: ['@nuxtjs/axios'],
+    modules: ['@nuxtjs/axios', '@nuxtjs/vuetify'],
 
     axios: {},
 };
