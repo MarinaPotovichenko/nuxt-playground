@@ -13,6 +13,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 import { orgStructureData } from '~/types/mock.ts';
 import { Tree } from '~/types/Tree.ts';
+import { OrgDepartment } from '~/types/OrgDepartment.ts';
 
 @Component({
     head: {
@@ -35,7 +36,7 @@ export default class UsersTree extends Vue {
     tree: Tree | null = null;
 
     created() {
-        this.tree = new Tree(orgStructureData, 'child');
+        this.tree = new Tree<OrgDepartment>(orgStructureData, 'child');
     }
 }
 </script>
