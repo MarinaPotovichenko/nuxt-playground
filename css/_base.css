@@ -1,0 +1,13 @@
+html,
+body,
+.v-application--wrap {
+    color: #344955;
+}
+
+a {
+    text-decoration: none;
+
+    &:visited {
+        text-decoration: none;
+    }
+}
