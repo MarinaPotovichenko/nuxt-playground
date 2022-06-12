@@ -10,7 +10,9 @@
                     color="secondary"
                     text
                     @click="isDescriptionShowed = !isDescriptionShowed"
-                > Details </v-btn>
+                >
+                    {{ actionTitle }}
+                </v-btn>
 
                 <v-spacer></v-spacer>
 
@@ -44,6 +46,7 @@ export default class CardInfo extends Vue {
     @Prop({ type: String, default: '' }) title!: string;
     @Prop({ type: String, default: '' }) subtitle!: string;
     @Prop({ type: String, default: '' }) description!: string;
+    @Prop({ type: String, default: 'Details' }) actionTitle!: string;
 
     isDescriptionShowed = false;
 }

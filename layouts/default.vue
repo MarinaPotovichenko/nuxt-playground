@@ -81,7 +81,7 @@
                 </v-btn>
             </div>
 
-            <div class="bottom light--text">2021 - Marina Potovichenko</div>
+            <div class="bottom light--text">2022 - Marina Potovichenko</div>
         </v-main>
     </v-app>
 </template>
@@ -98,7 +98,10 @@ interface MenuListItem {
 @Component({})
 export default class DefaultLayout extends Vue {
     drawer = true;
-    items: MenuListItem[] = [{ title: 'Users (Tree)', icon: 'mdi-account-group-outline', link: '/' }];
+    items: MenuListItem[] = [
+        { title: 'Users (Tree)', icon: 'mdi-account-group-outline', link: '/' },
+        { title: 'Practice tasks', icon: 'mdi-list-status', link: '/practice' },
+    ];
 
     heartStorage = '';
 
@@ -123,7 +126,7 @@ export default class DefaultLayout extends Vue {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .buttons {
     position: absolute;
     right: 30px;
