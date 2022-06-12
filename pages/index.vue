@@ -11,8 +11,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { orgStructureData } from '~/types/mock.ts';
+import { orgStructureData } from '~/types/mock';
+// @ts-ignore
 import { Tree } from '~/types/Tree.ts';
+// @ts-ignore
 import { OrgDepartment } from '~/types/OrgDepartment.ts';
 
 @Component({

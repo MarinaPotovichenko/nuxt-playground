@@ -35,7 +35,8 @@
             ],
             "js-cookie": [
                 "node_modules/js-cookie/src/js.cookie.js"
-            ]
+            ],
+
         },
         "types": [
             "@nuxt/vue-app",

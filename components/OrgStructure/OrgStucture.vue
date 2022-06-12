@@ -6,6 +6,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'nuxt-property-decorator';
+// @ts-ignore
 import { Tree } from '~/types/Tree.ts';
 
 @Component({

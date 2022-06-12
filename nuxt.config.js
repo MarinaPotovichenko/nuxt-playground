@@ -1,6 +1,6 @@
 export default {
     target: 'static',
-    mode: 'spa',
+    ssr: false,
     head: {
         title: 'nuxt-playground',
         htmlAttrs: {
@@ -19,18 +19,11 @@ export default {
         color: '#1cf2f3',
     },
 
-    css: [{ src: '~/css/main.css', lang: 'postcss' }],
+    css: [{ src: '~/css/main.css' }],
 
     plugins: ['~/plugins/vuetify.ts'],
 
     build: {
-        postcss: {
-            plugins: {
-                'postcss-import': {},
-                'postcss-nested': {},
-            },
-        },
-        vendor: ['vuetify'],
         transpile: ['vue-cli-plugin-vuetify-preset-reply'],
     },
 
