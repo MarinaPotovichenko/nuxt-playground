@@ -19,7 +19,11 @@ export default {
         color: '#1cf2f3',
     },
 
-    css: [{ src: '~/css/main.scss', lang: 'sass' }],
+    css: [{ src: '~/css/main.scss' }],
+
+    styleResources: {
+        scss: ['~/css/*.scss']
+    },
 
     plugins: ['~/plugins/vuetify.ts'],
 
@@ -31,7 +35,7 @@ export default {
 
     buildModules: ['@nuxt/typescript-build', '@nuxtjs/stylelint-module'],
 
-    modules: ['@nuxtjs/axios', '@nuxtjs/vuetify'],
+    modules: ['@nuxtjs/axios', '@nuxtjs/vuetify',  '@nuxtjs/style-resources'],
 
     axios: {},
 };
