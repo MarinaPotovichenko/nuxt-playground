@@ -29,7 +29,14 @@
                     <v-divider></v-divider>
 
                     <v-card-text>
-                        {{ description }}
+                        <code
+                            v-if="isCode"
+                            v-html="description"
+                        />
+
+                        <span v-else>
+                            {{ description }}
+                        </span>
                     </v-card-text>
                 </div>
             </v-expand-transition>
@@ -47,7 +54,14 @@ export default class CardInfo extends Vue {
     @Prop({ type: String, default: '' }) subtitle!: string;
     @Prop({ type: String, default: '' }) description!: string;
     @Prop({ type: String, default: 'Details' }) actionTitle!: string;
+    @Prop({ type: Boolean, default: false }) isCode!: boolean;
 
     isDescriptionShowed = false;
 }
 </script>
+
+<style lang="scss" scoped>
+code {
+    white-space: pre-wrap;
+}
+</style>

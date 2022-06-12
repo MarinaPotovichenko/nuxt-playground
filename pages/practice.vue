@@ -9,18 +9,21 @@
             :description="item.description"
             :examples="item.examples"
             :solution="item.solution"
+            :results="item.results"
         />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+import { getFactorial } from '~/utils/factorial';
 
 interface Task {
     title: string;
     description: string;
     examples: string[];
     solution: string;
+    results: string[];
 }
 
 @Component({
@@ -38,7 +41,13 @@ export default class Practice extends Vue {
             description:
                 'Have the function FirstFactorial(num) take the num parameter being passed and return the factorial of it. For example: if num = 4, then your program should return (4 * 3 * 2 * 1) = 24. For the test cases, the range will be between 1 and 18 and the input will always be an integer.',
             examples: ['Input: 4 <br> Output: 24', 'Input: 8 <br> Output: 40320'],
-            solution: '123',
+            solution: getFactorial.toString().split('\n').join('<br/>'),
+            results: [
+                `Input: 1 <br> Output: ${getFactorial(1)}`,
+                `Input: 4 <br> Output: ${getFactorial(4)}`,
+                `Input: 8 <br> Output: ${getFactorial(8)}`,
+                `Input: 18 <br> Output: ${getFactorial(18)}`,
+            ]
         },
     ];
 }

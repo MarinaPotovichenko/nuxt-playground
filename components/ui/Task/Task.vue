@@ -5,7 +5,13 @@
             <Description :description="description" />
         </div>
         <Examples :examples="examples" />
-        <Solution :solution="solution" />
+        <p>Examples</p>
+        <Solution
+            :solution="solution"
+            class="mb-4"
+        />
+        <p>Results</p>
+        <Examples :examples="results" />
     </div>
 </template>
 
@@ -24,6 +30,7 @@ export default class Task extends Vue {
     @Prop({ type: String, default: '' }) description!: string;
     @Prop({ type: String, default: '' }) solution!: string;
     @Prop({ type: Array, default: () => ({}) }) examples!: string[];
+    @Prop({ type: Array, default: () => ({}) }) results!: string[];
 }
 </script>
 
@@ -34,5 +41,9 @@ export default class Task extends Vue {
         background: $bg-blue-light;
         border-left: 6px $secondary solid;
     }
+}
+
+.task:not(:last-child) {
+    border-bottom: 1px $bg-blue-light solid;
 }
 </style>

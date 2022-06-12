@@ -3,6 +3,7 @@
         <CardInfo
             :description="solution"
             action-title="Solution"
+            is-code
         />
     </div>
 </template>
