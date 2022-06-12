@@ -19,7 +19,7 @@ export default {
         color: '#1cf2f3',
     },
 
-    css: [{ src: '~/css/main.css' }],
+    css: [{ src: '~/css/main.scss', lang: 'sass' }],
 
     plugins: ['~/plugins/vuetify.ts'],
 
