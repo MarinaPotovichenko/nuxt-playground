@@ -17,6 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { getFactorial } from '~/utils/factorial';
+import { stringReverse } from '~/utils/string-reverse';
 
 interface Task {
     title: string;
@@ -47,6 +48,17 @@ export default class Practice extends Vue {
                 `Input: 4 <br> Output: ${getFactorial(4)}`,
                 `Input: 8 <br> Output: ${getFactorial(8)}`,
                 `Input: 18 <br> Output: ${getFactorial(18)}`,
+            ]
+        },
+        {
+            title: 'String reverse',
+            description:
+                'Have the function FirstReverse(str) take the str parameter being passed and return the string in reversed order. For example: if the input string is "Hello World and Coders" then your program should return the string sredoC dna dlroW olleH.',
+            examples: ['Input: coderbyte <br> Output: etybredoc', 'Input: I Love Code <br> Output: edoC evoL I'],
+            solution: stringReverse.toString().split('\n').join('<br/>'),
+            results: [
+                `Input: coderbyte <br> Output: ${stringReverse('coderbyte')}`,
+                `Input: Test string <br> Output: ${stringReverse('Test string')}`,
             ]
         },
     ];

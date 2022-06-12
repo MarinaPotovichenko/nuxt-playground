@@ -44,6 +44,6 @@ export default class Task extends Vue {
 }
 
 .task:not(:last-child) {
-    border-bottom: 1px $bg-blue-light solid;
+    border-bottom: 1px $secondary solid;
 }
 </style>
