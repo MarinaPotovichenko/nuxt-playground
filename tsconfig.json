@@ -42,9 +42,8 @@
             "@nuxt/vue-app",
             "@types/node",
             "@nuxt/types",
-            "@types/webpack-env",
-            "@types/resize-observer-browser",
-            "@nuxtjs/toast"
+            "jest",
+            "node"
         ]
     },
     "exclude": [
@@ -55,6 +54,9 @@
         "node_modules",
         "**/.nuxt/.*",
         "**/test/.*",
-        "application/modules/config/plugin.js"
+        "application/modules/config/plugin.js",
+        "*.config.js",
+        ".nuxt",
+        "dist"
     ]
 }
