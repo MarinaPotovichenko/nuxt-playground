@@ -18,6 +18,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 import { getFactorial } from '~/utils/factorial';
 import { stringReverse } from '~/utils/string-reverse';
+import { subtractProductAndSum } from '~/utils/subtract';
 
 interface Task {
     title: string;
@@ -59,6 +60,17 @@ export default class Practice extends Vue {
             results: [
                 `Input: coderbyte <br> Output: ${stringReverse('coderbyte')}`,
                 `Input: Test string <br> Output: ${stringReverse('Test string')}`,
+            ]
+        },
+        {
+            title: 'Subtract the Product and Sum of Digits of an Integer',
+            description:
+                'Given an integer number n, return the difference between the product of its digits and the sum of its digits.',
+            examples: ['Input: 234 <br> Output: 15', 'Input: 4421 <br> Output: 21'],
+            solution: subtractProductAndSum.toString().split('\n').join('<br/>'),
+            results: [
+                `Input: 234 <br> Output: ${subtractProductAndSum(234)}`,
+                `Input: 44213 <br> Output: ${subtractProductAndSum(44213)}`,
             ]
         },
     ];
