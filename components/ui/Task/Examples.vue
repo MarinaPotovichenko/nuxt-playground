@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator';
 
 @Component({})
 export default class Examples extends Vue {
-    @Prop({ type: Array, default: () => [] }) examples!: string[];
+    @Prop({ type: Array, default: () => ([]) }) examples!: string[];
 }
 </script>
 

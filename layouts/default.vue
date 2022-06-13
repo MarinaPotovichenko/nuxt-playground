@@ -100,7 +100,8 @@ export default class DefaultLayout extends Vue {
     drawer = true;
     items: MenuListItem[] = [
         { title: 'Users (Tree)', icon: 'mdi-account-group-outline', link: '/' },
-        { title: 'Practice tasks', icon: 'mdi-list-status', link: '/practice' },
+        { title: 'Practice Easy', icon: 'mdi-list-status', link: '/practice-easy' },
+        { title: 'Practice Medium', icon: 'mdi-list-status', link: '/practice-medium' },
     ];
 
     heartStorage = '';

@@ -2,16 +2,23 @@
     <div class="task mb-10">
         <div class="about pa-4 mb-4">
             <p class="subtitle-1 secondary--text font-weight-medium">{{ title }}</p>
-            <Description :description="description" />
+            <Description
+                :description="description"
+                :img="descriptionImg"
+            />
         </div>
-        <Examples :examples="examples" />
-        <p>Examples</p>
+        <template v-if="examples.length">
+            <p>Examples</p>
+            <Examples :examples="examples" />
+        </template>
         <Solution
             :solution="solution"
             class="mb-4"
         />
-        <p>Results</p>
-        <Examples :examples="results" />
+        <template v-if="results.length">
+            <p>Results</p>
+            <Examples :examples="results" />
+        </template>
     </div>
 </template>
 
@@ -28,9 +35,10 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator';
 export default class Task extends Vue {
     @Prop({ type: String, default: '' }) title!: string;
     @Prop({ type: String, default: '' }) description!: string;
+    @Prop({ type: String, default: '' }) descriptionImg!: string;
     @Prop({ type: String, default: '' }) solution!: string;
-    @Prop({ type: Array, default: () => ({}) }) examples!: string[];
-    @Prop({ type: Array, default: () => ({}) }) results!: string[];
+    @Prop({ type: Array, default: () => ([]) }) examples!: string[];
+    @Prop({ type: Array, default: () => ([]) }) results!: string[];
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="font-weight-bold mb-4">Practice</h2>
+        <h2 class="font-weight-bold mb-4">Practice Easy</h2>
 
         <Task
             v-for="(item, index) in tasks"
@@ -20,24 +20,17 @@ import { getFactorial } from '~/utils/factorial';
 import { stringReverse } from '~/utils/string-reverse';
 import { subtractProductAndSum } from '~/utils/subtract';
 import { getIntersection } from '~/utils/intersection';
-
-interface Task {
-    title: string;
-    description: string;
-    examples: string[];
-    solution: string;
-    results: string[];
-}
+import { Task } from '~/types/Task';
 
 @Component({
     head: {
-        title: 'Practice',
+        title: 'Practice Easy',
     },
     components: {
         Task: () => import('~/components/ui/Task/Task.vue'),
     },
 })
-export default class Practice extends Vue {
+export default class PracticeEasy extends Vue {
     tasks: Task[] = [
         {
             title: 'Factorial',

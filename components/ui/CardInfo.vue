@@ -4,7 +4,7 @@
 
         <v-card-subtitle v-if="subtitle"> {{ subtitle }}</v-card-subtitle>
 
-        <template v-if="description">
+        <template>
             <v-card-actions>
                 <v-btn
                     color="secondary"
