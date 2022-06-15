@@ -17,9 +17,8 @@
         />
         <div
             v-if="remember"
-            class="about pa-4 mb-4 type-red"
+            class="about pt-4 pb-1 pl-4 mb-4 type-red"
         >
-            <p class="subtitle-1 secondary--text font-weight-medium">{{ Remember }}</p>
             <Description :description="remember" />
         </div>
 
