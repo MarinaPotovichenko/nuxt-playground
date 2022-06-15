@@ -5,11 +5,7 @@
         </div>
         <img
             v-if="descriptionImg"
-            :src="descriptionImg"
-            alt="img"
-        >
-        <img
-            src="/binary-tree-task.png"
+            :src="`/${descriptionImg}`"
             alt="img"
         />
     </div>
@@ -31,6 +27,7 @@ export default class Description extends Vue {
 
     img {
         width: 100%;
+        max-width: 600px;
     }
 }
 </style>

@@ -5,4 +5,5 @@ export interface Task {
     examples?: string[];
     solution: string;
     results?: string[];
+    remember?: string;
 }

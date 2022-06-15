@@ -10,6 +10,7 @@
             :description-img="item.descriptionImg"
             :examples="item.examples"
             :solution="item.solution"
+            :remember="item.remember"
             :results="item.results"
         />
     </div>
@@ -33,11 +34,16 @@ export default class PracticeMedium extends Vue {
         {
             title: 'Trees: Is This a Binary Search Tree?',
             description: '',
-            descriptionImg: '/static/binary-tree-task.png',
+            descriptionImg: 'binary-tree-task.png',
             examples: [],
-            solution: `${getTreeByLayer.toString().split('\n').join('<br/>')} <br/> <br/> ${checkBST.toString().split('\n').join('<br/>')}`,
-        }
-    ]
+            remember:
+                'Use recursion for getting data from nodes and put data to left/right sides and check if its on correct sort',
+            solution: `${getTreeByLayer.toString().split('\n').join('<br/>')} <br/> <br/> ${checkBST
+                .toString()
+                .split('\n')
+                .join('<br/>')}`,
+        },
+    ];
 }
 </script>
 
