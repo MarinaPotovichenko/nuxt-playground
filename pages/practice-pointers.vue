@@ -39,7 +39,7 @@ export default class PracticeArray extends Vue {
                 'Input: s = "race a car" <br> Output: false',
             ],
             solution: isValidPalindrome.toString().split('\n').join('<br/>'),
-            remember: 'Sort array and compare two elements, next one should be more then prev',
+            remember: 'Use regexp to replace non-alphanumeric characters',
             results: [
                 `Input: s = "A man, a plan, a canal: Panama" <br> Output: ${isValidPalindrome(
                     'A man, a plan, a canal: Panama'

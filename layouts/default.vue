@@ -99,8 +99,9 @@ interface MenuListItem {
 export default class DefaultLayout extends Vue {
     drawer = true;
     items: MenuListItem[] = [
-        { title: 'Practice Array', icon: 'mdi-list-status', link: '/practice-array' },
-        { title: 'Practice Pointers', icon: 'mdi-list-status', link: '/practice-pointers' },
+        { title: 'Array', icon: 'mdi-list-status', link: '/practice-array' },
+        { title: 'Two Pointers', icon: 'mdi-list-status', link: '/practice-pointers' },
+        { title: 'Sliding Window', icon: 'mdi-list-status', link: '/practice-sliding-window' },
         { title: '(old) Practice Easy', icon: 'mdi-list-status', link: '/practice-easy' },
         { title: '(old) Practice Medium', icon: 'mdi-list-status', link: '/practice-medium' },
         { title: '(old) Users (Tree)', icon: 'mdi-account-group-outline', link: '/' },
