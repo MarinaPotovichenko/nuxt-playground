@@ -10,6 +10,18 @@ export function doesContainDuplicates(nums: number[]) {
     return doesContain;
 }
 
+export function doesContainDuplicatesImproved(nums: number[]) {
+    const tempObj = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (!tempObj[nums[i]]) {
+            tempObj[nums[i]] = 1;
+        } else {
+            return true;
+        }
+    }
+    return false;
+}
+
 export function isAnagramValid(s: string, t: string) {
     if (s.length === t.length) {
         const sArray = s.split('').sort();
@@ -29,6 +41,24 @@ export function getIndexesForTargetSum(nums: number[], target: number) {
                 targetArray = [indexTwo, indexOne]
             }
         });
+    });
+
+    return targetArray;
+}
+
+export function getIndexesForTargetSumImproved(nums: number[], target: number) {
+    const tempObj = {};
+    let targetArray = [];
+    let tempDiff;
+
+    nums.forEach((currOne, indexOne) => {
+        tempDiff = target - currOne;
+
+        if (tempObj[tempDiff] !== undefined) {
+            targetArray = [tempObj[tempDiff], indexOne];
+        } else {
+            tempObj[currOne] = indexOne;
+        }
     });
 
     return targetArray;
