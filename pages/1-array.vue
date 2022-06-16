@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="font-weight-bold mb-4">Practice Array</h2>
+        <h2 class="font-weight-bold mb-4"> Array</h2>
 
         <Task
             v-for="(item, index) in tasks"

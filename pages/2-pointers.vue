@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="font-weight-bold mb-4">Practice Pointers</h2>
+        <h2 class="font-weight-bold mb-4"> Pointers</h2>
 
         <Task
             v-for="(item, index) in tasks"
