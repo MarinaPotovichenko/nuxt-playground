@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { getMaxProfit } from '~/utils/sliding-window';
+import { getMaxProfit } from '~/utils/3-sliding-window';
 import { Task } from '~/types/Task';
 
 @Component({

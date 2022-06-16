@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { doesContainDuplicatesImproved, isAnagramValid, getIndexesForTargetSumImproved } from '~/utils/arrays';
+import { doesContainDuplicatesImproved, isAnagramValid, getIndexesForTargetSumImproved } from '~/utils/1-arrays';
 import { Task } from '~/types/Task';
 
 @Component({
@@ -36,11 +36,14 @@ export default class PracticeArray extends Vue {
                 'Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.',
             examples: ['Input: nums = [1,2,3,1] <br> Output: true', 'Input: nums = [1,2,3,4] <br> Output: false'],
             solution: doesContainDuplicatesImproved.toString().split('\n').join('<br/>'),
-            remember: 'Add value as obj prop and check if it exist OR Sort array and compare two elements, next one should be more then prev',
+            remember:
+                'Add value as obj prop and check if it exist OR Sort array and compare two elements, next one should be more then prev',
             results: [
                 `Input: [1,2,3,1] <br> Output: ${doesContainDuplicatesImproved([1, 2, 3, 1])}`,
                 `Input: [1,2,3,4] <br> Output: ${doesContainDuplicatesImproved([1, 2, 3, 4])}`,
-                `Input: [1,1,1,3,3,4,3,2,4,2] <br> Output: ${doesContainDuplicatesImproved([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])}`,
+                `Input: [1,1,1,3,3,4,3,2,4,2] <br> Output: ${doesContainDuplicatesImproved([
+                    1, 1, 1, 3, 3, 4, 3, 2, 4, 2,
+                ])}`,
             ],
         },
         {
@@ -69,7 +72,10 @@ export default class PracticeArray extends Vue {
             solution: getIndexesForTargetSumImproved.toString().split('\n').join('<br/>'),
             remember: 'Sort array and compare two arrays',
             results: [
-                `Input: nums = [2,7,11,15], target = 9 <br> Output: ${getIndexesForTargetSumImproved([2, 7, 11, 15], 9)}`,
+                `Input: nums = [2,7,11,15], target = 9 <br> Output: ${getIndexesForTargetSumImproved(
+                    [2, 7, 11, 15],
+                    9
+                )}`,
                 `Input: nums = [3,2,4], target = 6 <br> Output: ${getIndexesForTargetSumImproved([3, 2, 4], 6)}`,
             ],
         },

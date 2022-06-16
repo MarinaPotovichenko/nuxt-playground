@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { isValidPalindrome } from '~/utils/pointers';
+import { isValidPalindrome } from '~/utils/2-pointers';
 import { Task } from '~/types/Task';
 
 @Component({

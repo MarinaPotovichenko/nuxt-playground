@@ -103,6 +103,7 @@ export default class DefaultLayout extends Vue {
         { title: 'Two Pointers', icon: 'mdi-list-status', link: '/2-pointers' },
         { title: 'Sliding Window', icon: 'mdi-list-status', link: '/3-sliding-window' },
         { title: 'Stack', icon: 'mdi-list-status', link: '/4-stack' },
+        { title: 'Binary Search', icon: 'mdi-list-status', link: '/5-binary-search' },
         { title: '(old) Practice Easy', icon: 'mdi-list-status', link: '/practice-easy' },
         { title: '(old) Practice Medium', icon: 'mdi-list-status', link: '/practice-medium' },
         { title: '(old) Users (Tree)', icon: 'mdi-account-group-outline', link: '/' },

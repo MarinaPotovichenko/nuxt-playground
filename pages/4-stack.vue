@@ -16,9 +16,9 @@
 </template>
 
 <script lang='ts'>
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
-import { isParenthesesValid } from '~/utils/stack';
+import { isParenthesesValid } from '~/utils/4-stack';
 
 @Component({
     head: {
@@ -40,17 +40,18 @@ export default class Stack extends Vue {
                 'Input: s = "(]" <br> Output: false <br>',
             ],
             solution: isParenthesesValid.toString().split('\n').join('<br/>'),
-            remember: 'Use hashmap for saving {close brackets: open brackets} structure, use stack for pushing open brackets. When in cycle we see open type, we push it in stack. If we see close, checking prev value, if it was the same type of bracket, we pop it. If stack is empty or prev bracket is another type, it means its incorrect. ',
+            remember:
+                'Use hashmap for saving {close brackets: open brackets} structure, use stack for pushing open brackets. When in cycle we see open type, we push it in stack. If we see close, checking prev value, if it was the same type of bracket, we pop it. If stack is empty or prev bracket is another type, it means its incorrect. ',
             results: [
-                `Input: s = "()" <br> Output: ${isParenthesesValid("()")}`,
-                `Input: s = ")(" <br> Output: ${isParenthesesValid(")(")}`,
-                `Input: s = "()[]{}" <br> Output: ${isParenthesesValid("()[]{}")}`,
-                `Input: s = "()[]{}" <br> Output: ${isParenthesesValid("()[]{}")}`,
-                `Input: s = "{{}[][[[]]]}" <br> Output: ${isParenthesesValid("{{}[][[[]]]}")}`,
-                `Input: s = "(]" <br> Output: ${isParenthesesValid("(]")}`,
-                `Input: s = "{{}[][[[}]]}" <br> Output: ${isParenthesesValid("{{}[][[[}]]}")}`,
-                `Input: s = "}" <br> Output: ${isParenthesesValid("}")}`,
-                `Input: s = "([)]" <br> Output: ${isParenthesesValid("([)]")}`,
+                `Input: s = "()" <br> Output: ${isParenthesesValid('()')}`,
+                `Input: s = ")(" <br> Output: ${isParenthesesValid(')(')}`,
+                `Input: s = "()[]{}" <br> Output: ${isParenthesesValid('()[]{}')}`,
+                `Input: s = "()[]{}" <br> Output: ${isParenthesesValid('()[]{}')}`,
+                `Input: s = "{{}[][[[]]]}" <br> Output: ${isParenthesesValid('{{}[][[[]]]}')}`,
+                `Input: s = "(]" <br> Output: ${isParenthesesValid('(]')}`,
+                `Input: s = "{{}[][[[}]]}" <br> Output: ${isParenthesesValid('{{}[][[[}]]}')}`,
+                `Input: s = "}" <br> Output: ${isParenthesesValid('}')}`,
+                `Input: s = "([)]" <br> Output: ${isParenthesesValid('([)]')}`,
             ],
         },
     ];

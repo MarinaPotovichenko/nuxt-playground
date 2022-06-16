@@ -1,7 +1,9 @@
 <template>
     <div class="description mb-4">
-        <div v-if="description">
-            {{ description }}
+        <div
+            v-if="description"
+            v-html="description"
+        >
         </div>
         <img
             v-if="descriptionImg"
