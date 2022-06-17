@@ -20,6 +20,7 @@
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
+    "@mdi/font": "^6.7.96",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/jest": "^28.1.1",

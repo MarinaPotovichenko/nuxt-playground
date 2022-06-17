@@ -22,7 +22,7 @@ import { getIndexOfTargetValue } from '~/utils/5-binary-search';
 
 @Component({
     head: {
-        title: 'Practice Stack',
+        title: 'Practice Binary Search',
     },
     components: {
         Task: () => import('~/components/ui/Task/Task.vue'),
