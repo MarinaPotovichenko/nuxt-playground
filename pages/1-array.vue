@@ -70,7 +70,8 @@ export default class PracticeArray extends Vue {
                 'Input: nums = [3,2,4], target = 6 <br> Output: [1,2]',
             ],
             solution: getIndexesForTargetSumImproved.toString().split('\n').join('<br/>'),
-            remember: 'Sort array and compare two arrays',
+            remember:
+                'В цикле таргет минус текущий элемент, найти такой элемент в объекте. Если не нашли, то записать текущий в объект',
             results: [
                 `Input: nums = [2,7,11,15], target = 9 <br> Output: ${getIndexesForTargetSumImproved(
                     [2, 7, 11, 15],

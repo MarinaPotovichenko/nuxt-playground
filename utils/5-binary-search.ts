@@ -17,7 +17,7 @@ export function getIndexOfTargetValue(arr: number[], target: number) {
             if (target >= arr[l] && target < arr[mid]) {
                 r = mid - 1;
             } else {
-                l = mid - 1;
+                l = mid + 1;
             }
         } else {
             //right

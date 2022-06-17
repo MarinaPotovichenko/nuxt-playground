@@ -39,7 +39,7 @@ export default class PracticeArray extends Vue {
                 'Input: prices = [7,6,4,3,1] <br> Output: 0 <br> Explanation: In this case, no transactions are done and the max profit = 0.',
             ],
             solution: getMaxProfit.toString().split('\n').join('<br/>'),
-            remember: 'Sort array and compare two elements, next one should be more then prev',
+            remember: 'Два цикла, не проверять элементы, которые уже были по индексу в верхнем массиве',
             results: [
                 `Input: prices = [7,1,5,3,6,4] <br> Output: ${getMaxProfit([7, 1, 5, 3, 6, 4])}`,
                 `Input: prices = [7,6,4,3,1] <br> Output: ${getMaxProfit([7, 6, 4, 3, 1])}`,

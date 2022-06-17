@@ -52,23 +52,34 @@ export function getReversedLLImproved2(head) { // TODO learn again
 
     head.node = null;
 
-    console.log('2', head, newHead);
-
     return newHead;
 }
 
-export let tempLinkedList = {
-    data: 1,
-    node: {
-        data: 2,
-        node: {
-            data: 3,
-            node: {
-                data: 4,
-                node: {
-                    data: 5,
-                }
-            }
+export function getMergedTwoSortedList(l1, l2) {
+
+    let dummy: any = {};
+    let tail: any = dummy;
+
+    while (l1 && l2 && Object.keys(l1).length && Object.keys(l2).length) {
+        if (l1.data < l2.data) {
+            tail.node = l1;
+            l1 = l1.next;
+        } else {
+            tail.node = l2;
+            l2 = l2.next;
         }
+
+        tail = tail.node;
     }
+
+
+    if (l1) {
+        tail.node = l1;
+    }
+
+    if (l2) {
+        tail.node = l2;
+    }
+
+    return dummy.node;
 }

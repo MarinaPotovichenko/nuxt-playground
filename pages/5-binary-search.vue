@@ -45,11 +45,14 @@ You must write an algorithm with O(log n) runtime complexity.`,
                 'Input: nums = [1], target = 0 <br> Output: -1 <br>',
             ],
             solution: getIndexOfTargetValue.toString().split('\n').join('<br/>'),
-            remember: `Binary search  - we can get target value, getting the middle of arr, and after middle value of one of sides. For deciding what part to chose we need to <br>
-            1. Set right = 0, left = length - 1. In start get middle as (r + l) / 2 <br>
+            remember: `Binary search  - we can get target value, getting the middle of arr, and after middle
+             value of one of sides. For deciding what part to chose we need to <br>
+            1. Set left = 0, right = length - 1. In start get middle as (r + l) / 2 <br>
             2. To check if the middle our target value, if yes - return id <br>
-            3. Check if its left. Check correct order left part (l < mid position), if yes, check mid value if its inside of our left values, if yes, change r on mid -1, if not, put l as mid + 1 <br>
-            4. If left is not in correct order, its right, check if middle value between values right part and move r or l position on mid +- 1, checking right side. <br>`,
+            3. Check if its left. Check correct order left part (l < mid position), if yes, check mid value
+            if its inside of our left values, if yes, change r on mid -1, if not, put l as mid + 1 <br>
+            4. If left is not in correct order, its right, check if middle value between values right
+            part and move r or l position on mid +- 1, checking right side. <br>`,
             results: [
                 `Input: nums = [4,5,6,7,0,1,2], target = 0 <br> Output: ${getIndexOfTargetValue(
                     [4, 5, 6, 7, 0, 1, 2],
