@@ -27,8 +27,9 @@ import {
     isSameTreeBFS,
     isSameTreeDFS,
     isSameTreeIterativeDFS,
+    isSubTreeExist,
 } from '~/utils/7-tree';
-import { treeTrue, treeDepth3, treeDepth4, treeDepth2 } from '~/utils/BinaryTreeTask/TreeTrue';
+import { treeTrue, treeDepth3, treeDepth4, treeDepth2, subtree, subtree2 } from '~/utils/BinaryTreeTask/TreeTrue';
 
 @Component({
     head: {
@@ -82,6 +83,17 @@ export default class LinkedList extends Vue {
                 `Input: true <br> Output: ${isSameTreeBFS(treeDepth3, treeDepth3)}`,
                 `Input: true <br> Output: ${isSameTreeIterativeDFS(treeDepth3, treeDepth3)}`,
                 `Input: false <br> Output: ${isSameTreeIterativeDFS(treeDepth2, treeDepth3)}`,
+            ],
+        },
+        {
+            title: 'Subtree of Another Tree',
+            descriptionImg: `tree-3.png`,
+            solution: isSubTreeExist.toString().split('\n').join('<br/>'),
+            remember: `Использовать ф-цию для определния одинакового дерева. Если основное пустое, сразу false. Если второе пустое, сразу true. Если вызываем функцию проверки и возвращает true, значит, true. В return вызываем эту же основную функцию, но отправляем туда право и лево, и корень сравнваемой функции`,
+            results: [
+                `Input: true <br> Output: ${isSubTreeExist(treeDepth4, treeDepth4)}`,
+                `Input: true <br> Output: ${isSubTreeExist(treeDepth2, subtree)}`,
+                `Input: false <br> Output: ${isSubTreeExist(treeDepth2, subtree2)}`,
             ],
         },
     ];

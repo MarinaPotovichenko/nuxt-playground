@@ -147,3 +147,19 @@ export function isSameTreeIterativeDFS(t1, t2) {
 
     return isSame;
 }
+
+export function isSubTreeExist(t1, t2) {
+    if (!t2) {
+        return true;
+    }
+
+    if (!t1) {
+        return false;
+    }
+
+    if (isSameTreeDFS(t1, t2)) {
+        return true;
+    }
+
+    return isSubTreeExist(t1.left, t2) || isSubTreeExist(t1.right, t2);
+}
