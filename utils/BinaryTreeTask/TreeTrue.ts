@@ -1,18 +1,70 @@
 export const treeTrue: any = {
-    "data": 3,
+    "data": 4,
     "left": {
         "data": 2,
         "left": {
             "data": 1
+        },
+        "right": {
+            "data": 3
         }
     },
     "right": {
-        "data": 4,
+        "data": 7,
         "left": {
-            "data": 5
+            "data": 6
         },
         "right": {
-            "data": 6
+            "data": 9
         }
     }
 }
+
+export const treeDepth3: any = {
+    "data": 4,
+    "left": {
+        "data": 2,
+        "left": {
+            "data": 1,
+            "left": {
+                "data": 5
+            }
+        },
+        "right": {
+            "data": 3
+        }
+    },
+    "right": {
+        "data": 7,
+        "left": {
+            "data": 6
+        },
+        "right": {
+            "data": 9
+        }
+    }
+}
+
+export const treeDepth2: any = {
+    "data": 4,
+    "left": {
+        "data": 2,
+        "left": {
+            "data": 1,
+        },
+        "right": {
+            "data": 3
+        }
+    },
+    "right": {
+        "data": 7,
+        "left": {
+            "data": 6
+        },
+        "right": {
+            "data": 9
+        }
+    }
+}
+
+export const treeDepth4: any = {}
