@@ -163,3 +163,19 @@ export function isSubTreeExist(t1, t2) {
 
     return isSubTreeExist(t1.left, t2) || isSubTreeExist(t1.right, t2);
 }
+
+export function getLowestCommonAncestor(t1, v1, v2) {
+    let LCA = null;
+    let curr = t1;
+
+    while (curr) {
+        if (v1 > curr.data && v2 > curr.data) {
+            curr = curr.right;
+        } else if (v1 < curr.data && v2 < curr.data) {
+            curr = curr.left;
+        }
+        LCA = curr.data;
+    }
+
+    return LCA;
+}

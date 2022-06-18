@@ -21,6 +21,7 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
 import {
     getInvertedTree,
+    getLowestCommonAncestor,
     getMaxDepthBFS,
     getMaxDepthDFS,
     getMaxDepthIterativeDFS,
@@ -94,6 +95,17 @@ export default class LinkedList extends Vue {
                 `Input: true <br> Output: ${isSubTreeExist(treeDepth4, treeDepth4)}`,
                 `Input: true <br> Output: ${isSubTreeExist(treeDepth2, subtree)}`,
                 `Input: false <br> Output: ${isSubTreeExist(treeDepth2, subtree2)}`,
+            ],
+        },
+        {
+            title: 'Lowest Common Ancestor of a Binary Search Tree',
+            descriptionImg: `tree-3.png`,
+            solution: getLowestCommonAncestor.toString().split('\n').join('<br/>'),
+            remember: ``,
+            results: [
+                `Input: 2, 7 <br> Output: ${getLowestCommonAncestor(treeDepth2, 2, 7)}`,
+                `Input: 6, 9 <br> Output: ${getLowestCommonAncestor(treeDepth2, 6, 9)}`,
+                `Input: 1, 9 <br> Output: ${getLowestCommonAncestor(treeDepth2, 1, 9)}`,
             ],
         },
     ];
