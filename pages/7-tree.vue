@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="font-weight-bold mb-4">Stack</h2>
+        <h2 class="font-weight-bold mb-4">Tree</h2>
 
         <Task
             v-for="(item, index) in tasks"
@@ -21,7 +21,6 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
 import {
     getInvertedTree,
-    getLowestCommonAncestor,
     getMaxDepthBFS,
     getMaxDepthDFS,
     getMaxDepthIterativeDFS,
@@ -40,7 +39,7 @@ import { treeTrue, treeDepth3, treeDepth4, treeDepth2, subtree, subtree2 } from 
         Task: () => import('~/components/ui/Task/Task.vue'),
     },
 })
-export default class LinkedList extends Vue {
+export default class Tree extends Vue {
     tasks: Task[] = [
         {
             title: 'Invert Binary Tree',
@@ -97,17 +96,17 @@ export default class LinkedList extends Vue {
                 `Input: false <br> Output: ${isSubTreeExist(treeDepth2, subtree2)}`,
             ],
         },
-        {
-            title: 'Lowest Common Ancestor of a Binary Search Tree',
-            descriptionImg: `tree-3.png`,
-            solution: getLowestCommonAncestor.toString().split('\n').join('<br/>'),
-            remember: ``,
-            results: [
-                `Input: 2, 7 <br> Output: ${getLowestCommonAncestor(treeDepth2, 2, 7)}`,
-                `Input: 6, 9 <br> Output: ${getLowestCommonAncestor(treeDepth2, 6, 9)}`,
-                `Input: 1, 9 <br> Output: ${getLowestCommonAncestor(treeDepth2, 1, 9)}`,
-            ],
-        },
+        // { // где-то зациклились, проверить
+        //     title: 'Lowest Common Ancestor of a Binary Search Tree',
+        //     descriptionImg: `tree-3.png`,
+        //     solution: getLowestCommonAncestor.toString().split('\n').join('<br/>'),
+        //     remember: ``,
+        //     results: [
+        //         `Input: 2, 7 <br> Output: ${getLowestCommonAncestor(treeDepth2, 2, 7)}`,
+        //         `Input: 6, 9 <br> Output: ${getLowestCommonAncestor(treeDepth2, 6, 9)}`,
+        //         `Input: 1, 9 <br> Output: ${getLowestCommonAncestor(treeDepth2, 1, 9)}`,
+        //     ],
+        // },
     ];
 }
 </script>

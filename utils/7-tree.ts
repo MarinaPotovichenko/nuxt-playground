@@ -168,7 +168,7 @@ export function getLowestCommonAncestor(t1, v1, v2) {
     let LCA = null;
     let curr = t1;
 
-    while (curr) {
+    while (curr && Object.keys(curr)) {
         if (v1 > curr.data && v2 > curr.data) {
             curr = curr.right;
         } else if (v1 < curr.data && v2 < curr.data) {

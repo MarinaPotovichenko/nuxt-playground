@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="font-weight-bold mb-4">Stack</h2>
+        <h2 class="font-weight-bold mb-4">Linked List</h2>
 
         <Task
             v-for="(item, index) in tasks"
