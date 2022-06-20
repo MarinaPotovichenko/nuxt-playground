@@ -8,8 +8,12 @@ export function TrieNode(key) {
     this.end = false;
 }
 
-TrieNode.prototype.insert = function (word) {
-    let curr = this;
+export function Trie() {
+    this.root = new TrieNode(null);
+}
+
+Trie.prototype.insert = function (word) {
+    let curr = this.root;
 
     [...word].forEach(letter => {
         if (!curr.children[letter]) {
@@ -47,8 +51,8 @@ TrieNode.prototype.insert = function (word) {
     // insertAWord(wordArr, curr);
 };
 
-TrieNode.prototype.search = function (word) {
-    let curr = this;
+Trie.prototype.search = function (word) {
+    let curr = this.root;
     let wordArr = [...word];
 
     while (wordArr.length) {
@@ -87,8 +91,8 @@ TrieNode.prototype.search = function (word) {
     // return search(wordArr, curr);
 };
 
-TrieNode.prototype.startsWith = function (word) {
-    let curr = this;
+Trie.prototype.startsWith = function (word) {
+    let curr = this.root;
     let wordArr = [...word];
 
     while (wordArr.length) {

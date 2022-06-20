@@ -19,7 +19,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
-import { TrieNode } from '~/utils/8-tries';
+import { Trie, TrieNode } from '~/utils/8-tries';
 
 @Component({
     head: {
@@ -35,10 +35,11 @@ export default class Tries extends Vue {
             title: 'Implement Trie (Prefix Tree)',
             descriptionImg: `trie.png`,
             solution: `
+            ${Trie.toString().split('\n').join('<br/>')} <br><br>
             ${TrieNode.toString().split('\n').join('<br/>')} <br><br>
-            ${TrieNode.prototype.insert.toString().split('\n').join('<br/>')} <br><br>
-            ${TrieNode.prototype.search.toString().split('\n').join('<br/>')} <br><br>
-            ${TrieNode.prototype.startsWith.toString().split('\n').join('<br/>')} <br><br>
+            ${Trie.prototype.insert.toString().split('\n').join('<br/>')} <br><br>
+            ${Trie.prototype.search.toString().split('\n').join('<br/>')} <br><br>
+            ${Trie.prototype.startsWith.toString().split('\n').join('<br/>')} <br><br>
             `,
             remember: `
             Trie (try) - дерево, используемое для поиска и подстановки слов. <br>
@@ -49,7 +50,7 @@ export default class Tries extends Vue {
     ];
 
     created() {
-        const trie = new TrieNode(null);
+        const trie = new Trie();
         trie.insert('ab');
         trie.insert('abe');
         trie.insert('abq');
