@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2 class="font-weight-bold mb-4">
-            Heap and Priority Queue (нет готовой реализации в js), поэтому откладываю вопрос
+            Backtracking
         </h2>
 
         <Task
@@ -21,11 +21,11 @@
 <script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
-import { Trie, TrieNode } from '~/utils/8-tries';
+import { getUniqSolution, isWordExist } from '~/utils/10-backtracking';
 
 @Component({
     head: {
-        title: 'Practice Trie',
+        title: 'Practice Backtracking',
     },
     components: {
         Task: () => import('~/components/ui/Task/Task.vue'),
@@ -35,30 +35,51 @@ export default class HeapNPriorityQueue extends Vue {
     tasks: Task[] = [
         {
             title: 'Kth Largest Element in a Stream',
-            description: `Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
-                        <br>Implement KthLargest class:
-s                        <br><br>KthLargest(int k, int[] nums) Initializes the object with the integer k and the stream of integers nums.
-                        <br><br>int add(int val) Appends the integer val to the stream and returns the element representing the kth largest element in the stream.`,
+            description: `Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.
+<br><br>
+The same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+<br><br>
+It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for the given input.`,
             examples: [
-                `Input: ["KthLargest", "add", "add", "add", "add", "add"]<br>
-                        [[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]] <br> Output: [null, 4, 5, 5, 8, 8] <br><br>
-                        Explanation<br>
-                        KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]);<br>
-                        kthLargest.add(3);   // return 4<br>
-                        kthLargest.add(5);   // return 5<br>
-                        kthLargest.add(10);  // return 5<br>
-                        kthLargest.add(9);   // return 8<br>
-                        kthLargest.add(4);   // return 8<br>`,
+                `Input: candidates = [2,3,6,7], target = 7<br>
+Output: [[2,2,3],[7]]<br>
+Explanation:<br>
+2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.<br>
+7 is a candidate, and 7 = 7.<br>
+These are the only two combinations.`,
             ],
             solution: `
-            ${Trie.toString().split('\n').join('<br/>')} <br><br>
-            ${TrieNode.toString().split('\n').join('<br/>')} <br><br>
-            ${Trie.prototype.insert.toString().split('\n').join('<br/>')} <br><br>
-            ${Trie.prototype.search.toString().split('\n').join('<br/>')} <br><br>
-            ${Trie.prototype.startsWith.toString().split('\n').join('<br/>')} <br><br>
+            ${getUniqSolution.toString().split('\n').join('<br/>')} <br><br>
             `,
-            remember: ` `,
+            remember: `Алгоритм поиска с возвратом — это алгоритм решения проблем, который использует подход грубой силы для нахождения желаемого результата.
+            Подход грубой силы пробует все возможные решения и выбирает желаемые/наилучшие решения. Термин «откат» предполагает,
+            что если текущее решение не подходит, следует вернуться и попробовать другие решения. Таким образом, в этом подходе используется рекурсия.
+            Этот подход используется для решения задач, которые имеют несколько решений. Если вам нужно оптимальное решение, вы должны выбрать динамическое программирование. <br><br> DFS для создания  дерева, где одна ветвь обычное значение, а другая предыдущее значение. [] => [2][] => [2][22][2] [] ...
+            В рекурсию передается индекс элемента, пустой массив текущего решения, и общая сумма 0, котоаря наращивается по каждой ветке своя.
+            `,
+        },
+        {
+            title: 'Combination Sum',
+            descriptionImg: 'bk.png',
+            solution: `
+            ${isWordExist.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `Пройтись по всей доске, итерируясь по слову. Базовые кейсы: если совпадает длина, то значит слово нашли. Если наткнулись на ненужную букву, либо вне зоны доски, либо уже на эту букву натыкались (ключи сохраняем), то возвращаем фолс. Рекурсия - сохраняем путь, прибавляем букву какую ищем, возвращаем вызов рекурсии, смотря буквы сверху-сниху-побокам через ИЛИ. Если ничего не нашлось, то не нашли`,
         },
     ];
+
+    created() {
+        // console.log(getUniqSolution([2, 3, 6, 7], 7));
+        // console.log(
+        //     isWordExist(
+        //         [
+        //             ['A', 'B', 'C', 'E'],
+        //             ['S', 'F', 'C', 'S'],
+        //             ['A', 'D', 'E', 'E'],
+        //         ],
+        //         'ABCCED'
+        //     )
+        // );
+    }
 }
 </script>
