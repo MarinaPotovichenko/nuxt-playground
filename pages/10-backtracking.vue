@@ -31,7 +31,7 @@ import { getUniqSolution, isWordExist } from '~/utils/10-backtracking';
         Task: () => import('~/components/ui/Task/Task.vue'),
     },
 })
-export default class HeapNPriorityQueue extends Vue {
+export default class Backtracking extends Vue {
     tasks: Task[] = [
         {
             title: 'Kth Largest Element in a Stream',
@@ -60,7 +60,7 @@ These are the only two combinations.`,
         },
         {
             title: 'Combination Sum',
-            descriptionImg: 'bk.png',
+            descriptionImg: 'bt.png',
             solution: `
             ${isWordExist.toString().split('\n').join('<br/>')} <br><br>
             `,

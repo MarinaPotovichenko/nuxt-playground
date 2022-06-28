@@ -109,6 +109,7 @@ export default class DefaultLayout extends Vue {
         { title: 'Tries', icon: 'mdi-list-status', link: '/8-tries (не решено)' },
         { title: 'Heap and Priority Queue', icon: 'mdi-list-status', link: '/9-heap-n-priority-queue' },
         { title: 'Backtracking', icon: 'mdi-list-status', link: '/10-backtracking' },
+        { title: 'Graph', icon: 'mdi-list-status', link: '/11-graph' },
         { title: '(old) Practice Easy', icon: 'mdi-list-status', link: '/practice-easy' },
         { title: '(old) Practice Medium', icon: 'mdi-list-status', link: '/practice-medium' },
         { title: '(old) Users (Tree)', icon: 'mdi-account-group-outline', link: '/' },
