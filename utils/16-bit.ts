@@ -1,5 +1,5 @@
 //1
-var hammingWeight = function (n) {
+export function hammingWeight(n) {
     let output = 0;
     while (n != 0) { //
         n &= (n - 1);
@@ -10,7 +10,7 @@ var hammingWeight = function (n) {
 
 //2 запомнить = 1. пройтись от 1 до колва, при каджый итерации высчитыватьь колво 1 с помощью операции n &= n-1 либо DP, где каждое значение 1 + DP с offset-om. Offset определяется, явлется ли текущее i = offset * 2
 
-var countBits = function (n) {
+export function countBits(n) {
     //     let res = [0];
     //     let amountBitNumber = 32;
 
@@ -41,7 +41,7 @@ var countBits = function (n) {
     return dp
 };
 
-var reverseBits = function (n) {
+export function reverseBits(n) {
     // 1 - перевести в строку как-то и ревернуть return Number.parseInt(n.toString(2).split('').reverse().join('').padEnd(32, "0"),2);
 
     // 2 -  получить последний бит, результат сдвинуть влево, добавить бит в конце через ИЛИ, сдвинуть копию  вправо >>> 0 (Исправить результаты меньше нуля (уничтожить знаковый бит))
@@ -58,4 +58,41 @@ var reverseBits = function (n) {
 
     // Fix results less than zero (destroy sign bit)
     return result >>> 0;
+};
+
+export function missingNumberSum(nums) {
+    let res = nums.length;
+
+    for (let i = 0; i < nums.length; i++) {
+        res += i - nums[i];
+    }
+
+    return res;
+};
+
+export function missingNumberWithBit(nums) {
+    let res = nums.length;
+
+    for (let i = 0; i < nums.length; i++) {
+        res = res ^ i ^ nums[i];
+    }
+
+    return res;
+};
+
+export function getSum(a, b) {
+
+    //1. конвентировать в строку и перебирать с конца, сохраняя во временную переменную, если
+    // было два 1, перенос на лево
+
+    //2. Получить сперва, какие останутся единицы через ^. После чего получить временную переменную, где берем старые значения суммируемых чисел и получаем, какие единицы были увеличины и сдвигаем влево их и суммируем, пока временная переменная не равна 0, что значит, запоминающих в уме цифр не осталось.
+    let tb = b;
+    let res = a;
+    while (tb) {
+        let temp = (res & tb) << 1;
+        res = res ^ tb;
+        tb = temp;
+    }
+
+    return res;
 };

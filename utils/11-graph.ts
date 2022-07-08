@@ -268,15 +268,15 @@ export function orangesRotting(grid) {
 
 export function canFinish(numCourses, prerequisites) {
     let graph = [];
-    let hashset = new Set();
+    let visited = new Set();
     let numCoursesDone = 0;
 
     function dfs(i) {
-        if (hashset.has(i)) {
+        if (visited.has(i)) {
             return false;
         }
 
-        hashset.add(i);
+        visited.add(i);
         numCoursesDone += 1;
 
         if (numCoursesDone === numCourses) {
@@ -292,7 +292,7 @@ export function canFinish(numCourses, prerequisites) {
         graph.push([]);
     }
 
-    for (let i = 0; i < graph.length; i++) {
+    for (let i = 0; i < numCourses; i++) {
         for (let j = 0; j < prerequisites.length; j++) {
             if (prerequisites[j][1] === i) {
                 graph[i].push(prerequisites[j][0]);

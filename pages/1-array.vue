@@ -17,7 +17,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { doesContainDuplicatesImproved, isAnagramValid, getIndexesForTargetSumImproved } from '~/utils/1-arrays';
+import {
+    doesContainDuplicatesImproved,
+    isAnagramValid,
+    getIndexesForTargetSumImproved,
+    groupAnagrams,
+    topKFrequent,
+} from '~/utils/1-arrays';
 import { Task } from '~/types/Task';
 
 @Component({
@@ -79,6 +85,29 @@ export default class PracticeArray extends Vue {
                 )}`,
                 `Input: nums = [3,2,4], target = 6 <br> Output: ${getIndexesForTargetSumImproved([3, 2, 4], 6)}`,
             ],
+        },
+        {
+            title: '49. Group Anagrams',
+            description:
+                'Given an array of strings strs, group the anagrams together. You can return the answer in any order.',
+            examples: [
+                `Input: strs = ["eat","tea","tan","ate","nat","bat"]<br>
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]`,
+                'Input: nums = [3,2,4], target = 6 <br> Output: [1,2]',
+            ],
+            solution: groupAnagrams.toString().split('\n').join('<br/>'),
+        },
+        {
+            title: '347. Top K Frequent Elements',
+            description:
+                'Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.',
+            examples: [
+                `Input: nums = [1,1,1,2,2,3], k = 2 <br>Output: [1,2]`,
+                'Input: nums = [3,2,4], target = 6 <br> Output: [1,2]',
+            ],
+            solution: topKFrequent.toString().split('\n').join('<br/>'),
+            remember:
+                'Bucket Sort. Когда используем индекс массива за колво и размер этого массива будет такое же +1, т.к в худшем случае каждый элемент повторится по 1му разу. И в значении хранить массив элементов, которые посторяются столько раз из хешмеп.',
         },
     ];
 }

@@ -1,5 +1,5 @@
 export function isValidPalindrome(str: string) {
-    return str.toLocaleLowerCase().replace(/[^a-z0-9]/g, '').split('').reverse().join('');
+    return str === str.toLocaleLowerCase().replace(/[^a-z0-9]/g, '').split('').reverse().join('');
 }
 
 export function isValidPalindromeNotImproved(str: string) {

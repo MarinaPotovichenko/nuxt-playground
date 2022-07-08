@@ -66,7 +66,7 @@ export function getIndexesForTargetSumImproved(nums: number[], target: number) {
 
 
 //вывести
-var groupAnagrams = function (strs) {
+export function groupAnagrams(strs) {
     let hashset = {};
 
     strs.forEach((str) => {
@@ -84,7 +84,7 @@ var groupAnagrams = function (strs) {
 
 
 
-var groupAnagrams1 = function (strs) {
+export function groupAnagrams1(strs) {
     let hashset = {};
 
     strs.forEach((str) => {
@@ -101,34 +101,32 @@ var groupAnagrams1 = function (strs) {
     return Object.values(hashset);
 };
 
-
-var topKFrequent = function (nums, k) {
-    let hashset = {};
-    let freq = [];
+export function topKFrequent(nums, k) {
+    let map = new Map();
     let res = [];
+    let bucket = new Array(nums.length + 1);
 
+    // storing frequency of numbers in a map
+    for (let n of nums) {
+        map.set(n, (map.has(n) ? 1 + map.get(n) : 1))
+    }
 
-    nums.forEach((num, index) => {
-        hashset[num] = hashset[num] ? hashset[num] + 1 : 1;
-        freq.push([]);
-    });
+    // Poppulate the bucket with numbers in frequency
+    // as the index of the bucket
+    for (let [key, value] of map.entries()) {
+        if (!Array.isArray(bucket[value])) {
+            bucket[value] = [];
+        }
+        bucket[value].push(key);
+    }
 
-    Object.keys(hashset).forEach((key, index) => {
-        freq[hashset[key]].push(key);
-    });
-
-
-
-    for (let i = freq.length - 1; i >= 0; i--) {
-        for (let j = 0; j < freq[i].length; j++) {
-            res.push(freq[i][j]);
-
-            if (res.length === k) {
-                return res;
+    for (let i = bucket.length - 1; i >= 0; i--) {
+        if (Array.isArray(bucket[i])) {
+            for (let n of bucket[i]) {
+                res.push(n);
+                if (res.length === k)
+                    return res;
             }
         }
     }
-
-    return res;
 };
-

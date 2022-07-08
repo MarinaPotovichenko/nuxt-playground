@@ -1,14 +1,14 @@
 export function insert(intervals, newInterval) {
     let res = [];
-    let added = false;
+    let isAdded = false;
 
-    intervals.forEach((int, index) => {
-
+    intervals.forEach(int => {
         if (int[0] > newInterval[1]) {
-            if (!added) {
+            if (!isAdded) {
                 res.push(newInterval);
-                added = true;
+                isAdded = true;
             }
+
             res.push(int);
         } else if (int[1] < newInterval[0]) {
             res.push(int);
@@ -16,10 +16,10 @@ export function insert(intervals, newInterval) {
             newInterval[0] = Math.min(newInterval[0], int[0]);
             newInterval[1] = Math.max(newInterval[1], int[1]);
         }
-    })
+    });
 
-    if (!added) {
-        res.push(newInterval)
+    if (!isAdded) {
+        res.push(newInterval);
     }
 
     return res;
