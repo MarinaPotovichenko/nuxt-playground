@@ -23,6 +23,8 @@ import {
     getIndexesForTargetSumImproved,
     groupAnagrams,
     topKFrequent,
+    productExceptSelf,
+    isValidSudoku,
 } from '~/utils/1-arrays';
 import { Task } from '~/types/Task';
 
@@ -108,6 +110,34 @@ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]`,
             solution: topKFrequent.toString().split('\n').join('<br/>'),
             remember:
                 'Bucket Sort. Когда используем индекс массива за колво и размер этого массива будет такое же +1, т.к в худшем случае каждый элемент повторится по 1му разу. И в значении хранить массив элементов, которые посторяются столько раз из хешмеп.',
+        },
+        {
+            title: '238. Product of Array Except Self',
+            description:
+                'Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].',
+            examples: [`Input: nums = [1,2,3,4] <br> Output: [24,12,8,6]`],
+            solution: productExceptSelf.toString().split('\n').join('<br/>'),
+            remember: `
+                 1. O(n*m), O(n)
+                 2. Суммировать и поделить на нужный элемент O(n)
+                 3. Сперва получить постфикс значения - это с первого элемента перемножается
+                 друг на друга и записывается в массив результат со сдвигом на один элемент вправо.
+                 Аналогично с конца постфикс, но уже умножая на текущее значение в результате.
+                `,
+        },
+        {
+            title: '36. Valid Sudoku',
+            description: `
+                Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+<br>Each row must contain the digits 1-9 without repetition.
+<br>Each column must contain the digits 1-9 without repetition.
+<br>Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+                `,
+            solution: isValidSudoku.toString().split('\n').join('<br/>'),
+            remember: `
+                 хешсет, где ключ строка, куб и столбец
+                `,
         },
     ];
 }

@@ -130,3 +130,94 @@ export function topKFrequent(nums, k) {
         }
     }
 };
+
+export function productExceptSelf(nums) {
+
+    // 1. O(n*m), O(n)
+    // 2. Суммировать и поделить на нужный элемент O(n)
+    // 3. Сперва получить постфикс значения - это с первого элемента перемножается
+    // друг на друга и записывается в массив результат со сдвигом на один элемент вправо.
+    // Аналогично с конца постфикс, но уже умножая на текущее значение в результате.
+
+    let res = new Array(nums.length).fill(1);
+    let pre = 1;
+    for (let i = 0; i < nums.length; i++) {
+        res[i] = pre;
+        pre *= nums[i];
+    }
+
+    let post = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
+        res[i] *= post;
+        post *= nums[i];
+    }
+
+    return res;
+};
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+export function isValidSudoku(board) {
+    // хешсет, где ключ строка, куб и столбец
+
+    let validHashSet = {};
+
+    // инициализировать тут хешсеты
+
+
+    //c-1 - column = j
+    //r-1 - row = i
+    //cube-1-1 - i/3 - j/3
+
+    for (let i = 0; i < board.length; i++) {
+
+        for (let j = 0; j < board.length; j++) {
+            if (board[i][j] === '.') {
+                continue;
+            }
+
+            //check in cube
+            let ci = Math.floor(i / 3);
+            let cj = Math.floor(j / 3);
+
+            if (!validHashSet[`cube-${ci}-${cj}`]) {
+                validHashSet[`cube-${ci}-${cj}`] = new Set();
+                validHashSet[`cube-${ci}-${cj}`].add(board[i][j]);
+            } else if (!validHashSet[`cube-${ci}-${cj}`].has(board[i][j])) {
+                console.log(`cube-${ci}-${cj}`, board[i][j], i, j)
+                validHashSet[`cube-${ci}-${cj}`].add(board[i][j]);
+            } else {
+                return false;
+            }
+
+            //check in row
+            //...
+            //check in cols
+            //...
+        }
+    }
+    //      if(!validHashSet[`r-${i}`]) {
+    //              validHashSet[`r-${i}`] = new Set();
+    //           }
+
+    //     // check in row
+
+    //           if(!validHashSet[`c-${j}`]) {
+    //              validHashSet[`c-${j}`] = new Set();
+    //           } else if(validHashSet[`c-${j}`].has(board[i][j])) {
+    //               return false;
+    //           } else {
+    //               validHashSet[`c-${j}`].add(board[i][j]);
+    //           }
+
+    //           //check in column
+
+    //           if(validHashSet[`c-${j}`].has(board[i][j])) {
+    //               return false;
+    //           } else {
+    //               validHashSet[`c-${j}`].add(board[i][j]);
+    //           }
+    return true;
+};
