@@ -25,6 +25,7 @@ import {
     topKFrequent,
     productExceptSelf,
     isValidSudoku,
+    longestConsecutive,
 } from '~/utils/1-arrays';
 import { Task } from '~/types/Task';
 
@@ -137,6 +138,17 @@ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]`,
             solution: isValidSudoku.toString().split('\n').join('<br/>'),
             remember: `
                  хешсет, где ключ строка, куб и столбец
+                `,
+        },
+        {
+            title: '128. Longest Consecutive Sequence',
+            description: `Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+
+You must write an algorithm that runs in O(n) time.`,
+            solution: longestConsecutive.toString().split('\n').join('<br/>'),
+            remember: `
+                    1. Cортировка, пройтись в цикле проверяя разницу элементов O(nlogn) <br>
+                    2. Проверить каждый элемент, является ли он началом последовательности (есть ли в массиве current-1 значение), если нет, то проверяем, есть ли у него последующие элементы, подсчитывая колво таких = O(2n) = O(n), потому что проходиться будем только дважды
                 `,
         },
     ];

@@ -230,12 +230,10 @@ export function orangesRotting(grid) {
             if (ci >= 0 && cj >= 0 && ci < ROWS && cj < COLS && gridCopy[ci][cj] !== 0 && !visited[`${ci} ${cj}`]) { //&& gridCopy[ci][cj] !== 2
                 visited[`${ci} ${cj}`] = true;
                 gridCopy[ci][cj] = 2;
-                console.log('gridCopy[ci][cj]', gridCopy, visited)
                 amount = amount + 1;
 
 
                 direction.forEach(dir => {
-                    console.log('q.push', [ci, cj], [ci + dir[0], cj + dir[1]])
                     q.push([ci + dir[0], cj + dir[1]]);
 
                 });
@@ -247,12 +245,12 @@ export function orangesRotting(grid) {
     for (let i = 0; i < ROWS; i++) {
         for (let j = 0; j < COLS; j++) {
             if (gridCopy[i][j] === 2 && !visited[`${i} ${j}`] && amount === 0) {
-                console.log('grid 2')
+
                 bfs(j, j);
             }
         }
     }
-    console.log(gridCopy)
+
     for (let i = 0; i < ROWS; i++) {
         for (let j = 0; j < COLS; j++) {
             if (gridCopy[i][j] === 1) {

@@ -78,20 +78,7 @@ export function getMaxDepthIterativeDFS(node) {
     return res;
 }
 
-export function isSameTreeDFS(t1, t2) {
-    let isSame = true;
 
-    if (t1 && t2 && t1.data === t2.data) {
-        isSame = isSame && isSameTreeDFS(t1.right, t2.right);
-        isSame = isSame && isSameTreeDFS(t1.left, t2.left);
-    } else if (!t1 && !t2) {
-        return true;
-    } else {
-        return false;
-    }
-
-    return isSame;
-}
 
 export function isSameTreeBFS(t1, t2) {
     let isSame = true;
@@ -117,6 +104,21 @@ export function isSameTreeBFS(t1, t2) {
         } else {
             isSame = false;
         }
+    }
+
+    return isSame;
+}
+
+export function isSameTreeDFS(t1, t2) {
+    let isSame = true;
+
+    if (t1 && t2 && t1.data === t2.data) {
+        isSame = isSame && isSameTreeDFS(t1.right, t2.right);
+        isSame = isSame && isSameTreeDFS(t1.left, t2.left);
+    } else if (!t1 && !t2) {
+        return true;
+    } else {
+        return false;
     }
 
     return isSame;

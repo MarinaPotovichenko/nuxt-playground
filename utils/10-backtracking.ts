@@ -54,3 +54,57 @@ export function isWordExist(board, word) {
     return false;
 }
 
+var solveNQueens = function (n) {
+    let col = new Set();
+    let pD = new Set(); // (r + c)
+    let nD = new Set(); // (r - c)
+    let res = [];
+
+    let board = [];
+    for (let i = 0; i < n; i++) {
+        board.push([]);
+
+        for (let j = 0; j < n; j++) {
+            board[i].push('.');
+        }
+    }
+
+
+    function backtracing(i) {
+        console.log(i, board, col)
+        if (i >= n) {
+            let copy = [];
+
+            for (let j = 0; j < n; j++) {
+                copy.push(board[j].join(''));
+            }
+            res.push(copy);
+            return;
+        }
+
+        for (let c = 0; c < n; c++) {
+            if (col.has(c) || pD.has(i + c) || nD.has(i - c)) {
+                continue;
+            }
+
+
+            col.add(c);
+            pD.add(i + c);
+            nD.add(i - c);
+            board[i][c] = 'Q';
+
+            backtracing(i + 1);
+
+            col.delete(c);
+            pD.delete(i + c);
+            nD.delete(i - c);
+            board[i][c] = '.';
+        }
+
+    }
+
+    backtracing(0);
+
+    return res;
+
+};

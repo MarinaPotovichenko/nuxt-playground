@@ -221,3 +221,50 @@ export function isValidSudoku(board) {
     //           }
     return true;
 };
+
+export function longestConsecutive(nums) {
+    //1. Cортировка, пройтись в цикле проверяя разницу элементов O(nlogn)
+    //2. Проверить каждый элемент, является ли он началом последовательности (есть ли в массиве current-1 значение), если нет, то проверяем, есть ли у него последующие элементы, подсчитывая колво таких = O(2n) = O(n), потому что проходиться будем только дважды
+
+    let max = 0;
+    let amount = 0;
+
+    for (let n of nums) {
+
+        // это начало последовательности?
+        if (!nums.includes(n - 1)) {
+            amount = 0;
+
+            while (nums.includes(n + amount)) {
+                amount += 1;
+            }
+        }
+
+        max = Math.max(max, amount);
+    }
+
+    return max;
+
+};
+
+export function twoSum2(numbers, target) {
+    // 1. O(m*n) time
+    // 2. O(m*n) time, but O(1) если будем использовать текущий массив, и записывать остаток, а птом находить этот остаток
+    // 3. O(n) если проходить по циклу, испольозвать указатель слева и справа, и двигать его пока не найдем сумму или колво. Двигать - если сумма больше, двигаем конец меньше, если меньше - то начало ближе к концу.
+
+    let start = 0;
+    let end = numbers.length - 1;
+
+    while (start < end) {
+        let currentSum = numbers[start] + numbers[end];
+
+        if (currentSum > target) {
+            end--;
+        } else if (currentSum < target) {start++;}
+        else {
+            return [start + 1, end + 1];
+        }
+    }
+
+    return [];
+};
