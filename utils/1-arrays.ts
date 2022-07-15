@@ -267,4 +267,26 @@ export function twoSum2(numbers, target) {
     }
 
     return [];
+}
+
+var isHappy = function (n) {
+    let s = new Set();
+
+    while (true) {
+        let sp = n.toString().split('');
+        n = 0;
+        sp.forEach(num => n += num * num);
+
+        if (n == 1) {
+            return true;
+        }
+
+        if (s.has(n)) {
+            return false;
+        } else {
+            s.add(n)
+        }
+    }
+
+    return true;
 };
