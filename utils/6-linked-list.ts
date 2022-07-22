@@ -83,3 +83,31 @@ export function getMergedTwoSortedList(l1, l2) {
 
     return dummy.node;
 }
+
+
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+}
+
+
+export var removeNthFromEnd = function (head, n) {
+    let dummy = new ListNode(0, head); // исп вспомогательную ноду впереди всей последовталеьности, чтобы вернуть обновленную последовательность
+
+    let left = dummy;
+    let right = head;
+
+    while (n) {
+        right = right.next; // сдвигаем правый указатель на то колво, сколько хотим с конца
+        n--;
+
+    }
+
+    while (right) {
+        right = right.next; // передвигаем оба указателя, пока правый не выйдет вне списка
+        left = left.next;
+    }
+
+    left.next = left.next.next; //удаляем
+    return dummy.next; // возвращаем новый список
+};

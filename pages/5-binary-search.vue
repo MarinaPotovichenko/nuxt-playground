@@ -18,7 +18,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
-import { getIndexOfTargetValue } from '~/utils/5-binary-search';
+import { getIndexOfTargetValue, minEatingSpeed } from '~/utils/5-binary-search';
 
 @Component({
     head: {
@@ -34,11 +34,11 @@ export default class BinarySearch extends Vue {
             title: 'Search in Rotated Sorted Array',
             description: `There is an integer array nums sorted in ascending order (with distinct values).
 
-Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+            Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
 
-Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+            Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
 
-You must write an algorithm with O(log n) runtime complexity.`,
+            You must write an algorithm with O(log n) runtime complexity.`,
             examples: [
                 'Input: nums = [4,5,6,7,0,1,2], target = 0 <br> Output: 4 <br/>',
                 'Input: nums = [4,5,6,7,0,1,2], target = 3 <br> Output: -1 <br>',
@@ -64,6 +64,25 @@ You must write an algorithm with O(log n) runtime complexity.`,
                     3
                 )}`,
             ],
+        },
+        {
+            title: 'Koko Eating Bananas',
+            description: `
+            Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. The guards have gone and will come back in h hours.
+
+            Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. If the pile has less than k bananas, she eats all of them instead and will not eat any more bananas during this hour.
+
+            Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
+
+            Return the minimum integer k such that she can eat all the bananas within h hours.
+
+`,
+            solution: `
+            ${minEatingSpeed.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+            Binary search от 1 до макс колва бананов в корзинке.
+            `,
         },
     ];
 }

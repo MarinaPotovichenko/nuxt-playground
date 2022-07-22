@@ -18,7 +18,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
-import { isParenthesesValid } from '~/utils/4-stack';
+import { isParenthesesValid, largestRectangleArea } from '~/utils/4-stack';
 
 @Component({
     head: {
@@ -53,6 +53,15 @@ export default class Stack extends Vue {
                 `Input: s = "}" <br> Output: ${isParenthesesValid('}')}`,
                 `Input: s = "([)]" <br> Output: ${isParenthesesValid('([)]')}`,
             ],
+        },
+        {
+            title: 'Largest Rectangle in Histogram',
+            description: `Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.`,
+            solution: largestRectangleArea.toString().split('\n').join('<br/>'),
+            remember: `
+                // 1. брать посл элемент и проходиться до конца массива, минусуя и получая самую длинную последовательность с  такой высотой O(n*n*(maxHeight))
+                // 2 Проходимся по высотам. Если высота больше предыд, то пушим в стек. Если меньше, то должны убрать те элементы, которые больше него, получая их значение, сколько максимум до текущей позиции они могли набрать, т.к все по возрастанию, значит, этот элемент до текущего момента мог увеличивать площадь. В конце пройтись по остатку элементов с теке, их площадь от их позиции до конца.
+                `,
         },
     ];
 }

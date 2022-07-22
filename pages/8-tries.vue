@@ -47,29 +47,21 @@ export default class Tries extends Vue {
             Префикс - это часть слова.
             `,
         },
+        {
+            title: 'Implement Trie (Prefix Tree)',
+            descriptionImg: `trie.png`,
+            solution: `
+            ${Trie.toString().split('\n').join('<br/>')} <br><br>
+            ${TrieNode.toString().split('\n').join('<br/>')} <br><br>
+            ${Trie.prototype.insert.toString().split('\n').join('<br/>')} <br><br>
+            ${Trie.prototype.search.toString().split('\n').join('<br/>')} <br><br>
+            ${Trie.prototype.startsWith.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+             Нода - хешсет с буквами и ссылками на детей и флаг, конец слова или нет. Добавление побуквенно, с проверкой, есть ли такая буква, если нет, то добавляем, если да, то идем по этому ребенку.
+             Поиск - dfs рекурсивный (передаем индекс буквы слова и значение ноды), проходимся по слову от текущей позиции. Если буква не точка, идем по ребенку, проверив есть ли он, в конце функции проверяем кокнец ли слова. Если точка, проходимся по детям текущего узла, если  dfs return true. Если прошлись по всем детям и не нашли, false.
+            `,
+        },
     ];
-
-    created() {
-        const trie = new Trie();
-        trie.insert('ab');
-        trie.insert('abe');
-        trie.insert('abq');
-
-        // console.log('final', trie);
-
-        // console.log('search(abq)', trie.search('abq'));
-        // console.log('search(abe)', trie.search('abe'));
-        // console.log('search(a)', trie.search('a'));
-        // console.log('search(ab)', trie.search('ab'));
-        // console.log('search()', trie.search(''));
-        // console.log('search(abqe)', trie.search('abqe'));
-
-        // console.log('startsWith(abq)', trie.startsWith('abq'));
-        // console.log('startsWith(abe)', trie.startsWith('abe'));
-        // console.log('startsWith(a)', trie.startsWith('a'));
-        // console.log('startsWith(ab)', trie.startsWith('ab'));
-        // console.log('startsWith()', trie.startsWith(''));
-        // console.log('startsWith(abqe)', trie.startsWith('abqe'));
-    }
 }
 </script>

@@ -1,5 +1,3 @@
-import {isDate} from '@vue/shared';
-
 export function getInvertedTree(node) {
     let l = node.left;
     let r = node.right;
@@ -24,10 +22,7 @@ export function getMaxDepthDFS(node) {
     let l = getMaxDepthDFS(node.left);
     let r = getMaxDepthDFS(node.right);
 
-    let max = l > r ? l : r;
-
-
-    return 1 + max;
+    return 1 + Math.max(l, r);
 }
 
 export function getMaxDepthBFS(node) {
@@ -69,7 +64,7 @@ export function getMaxDepthIterativeDFS(node) {
         let [curr, depth] = stack.pop();
 
         if (curr) {
-            res = res > depth ? res : depth;
+            res = Math.max(res, depth);
             stack.push([curr.left, depth + 1]);
             stack.push([curr.right, depth + 1]);
         }

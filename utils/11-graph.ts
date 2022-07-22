@@ -2,7 +2,6 @@ export function getAmountOfIslands(grid) {
     let amount = 0;
 
     let poll = grid;
-    console.log('grid', grid)
     let numberOfRows = poll.length;
     let numberOfColumns = poll[0].length;
     let directions = [[0, 1], [0, -1], [1, 0], [-1, 0]];
@@ -12,7 +11,6 @@ export function getAmountOfIslands(grid) {
         poll[i][j] = "0";
 
         while (q.length) {
-            console.log('q', ...q)
             let [row, col] = q.shift(); //can be change for depth first search
 
             directions.forEach(el => {
@@ -264,41 +262,134 @@ export function orangesRotting(grid) {
 
 };
 
-export function canFinish(numCourses, prerequisites) {
-    let graph = [];
-    let visited = new Set();
-    let numCoursesDone = 0;
 
-    function dfs(i) {
-        if (visited.has(i)) {
-            return false;
-        }
+const INF = 2 ** 31 - 1;
+const DIRECTIONS = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+];
 
-        visited.add(i);
-        numCoursesDone += 1;
+export function wallsAndGates(rooms) {
+    const queue = [];
 
-        if (numCoursesDone === numCourses) {
-            return true;
-        }
-
-        for (let j = 0; j < graph[i].length; j++) {
-            return dfs(graph[i][j]);
-        }
-    }
-
-    for (let i = 0; i < numCourses; i++) {
-        graph.push([]);
-    }
-
-    for (let i = 0; i < numCourses; i++) {
-        for (let j = 0; j < prerequisites.length; j++) {
-            if (prerequisites[j][1] === i) {
-                graph[i].push(prerequisites[j][0]);
+    for (let i = 0; i < rooms.length; ++i) {
+        for (let j = 0; j < rooms[0].length; ++j) {
+            if (rooms[i][j] === 0) {
+                queue.push([i, j]);
             }
         }
     }
 
-    return dfs(0);
+    let count = 1;
+
+    while (queue.length) {
+        let length = queue.length;
+
+        while (length--) {
+            [i, j] = queue.shift();
+
+            for ([k, l] of DIRECTIONS) {
+                k += i;
+                l += j;
+                if (inBounds(rooms, k, l) && rooms[k][l] === INF) {
+                    rooms[k][l] = count;
+                    queue.push([k, l]);
+                }
+            }
+        }
+
+        ++count;
+    }
+}
+
+function inBounds(rooms, i, j) {
+    return i >= 0 && j >= 0 && i < rooms.length && j < rooms[0].length;
+}
+
+export var topological = function (numCourses, prerequisites) {
+    let adj = [];
+
+    for (let i = 0; i < numCourses; i++) {
+        adj.push([]);
+    }
+
+    for (let i = 0; i < prerequisites.length; i++) {
+        adj[prerequisites[i][0]].push(prerequisites[i][1]);
+    }
+
+    let res = [];
+    let visited = new Set();
+
+    function dfs(i) {
+        if (visited.has(i)) {
+            return;
+        }
+
+        for (let j = 0; j < adj[i].length; j++) {
+            dfs(adj[i][j])
+        }
+
+        visited.add(i)
+        res.push(i);
+    }
+
+
+    for (let i = 0; i < numCourses; i++) {
+        dfs(i)
+    }
+
+    return res;
+};
+
+export var findOrder = function (numCourses, prerequisites) {
+    let adj = [];
+
+    for (let i = 0; i < numCourses; i++) {
+        adj.push([]);
+    }
+
+    for (let i = 0; i < prerequisites.length; i++) {
+        adj[prerequisites[i][0]].push(prerequisites[i][1]);
+    }
+
+    let res = [];
+    let visited = new Set();
+    let cycle = new Set();
+
+    function dfs(i) {
+        if (cycle.has(i)) {
+            return false;
+        }
+
+        if (visited.has(i)) {
+            return true;
+        }
+
+        cycle.add(i);
+
+        for (let j = 0; j < adj[i].length; j++) {
+            if (!dfs(adj[i][j])) {
+                return false;
+            };
+        }
+
+        cycle.delete(i);
+        visited.add(i)
+        res.push(i);
+
+        return true;
+    }
+
+
+    for (let i = 0; i < numCourses; i++) {
+        if (!dfs(i)) {
+            return [];
+        };
+    }
+
+    return res;
 };
 
 export function validTree(n, edges) {
@@ -341,6 +432,76 @@ export function validTree(n, edges) {
     let res = dfs(0, -1)
     return visited.size === n && res;
 }
+
+
+export var ladderLength = function (beginWord, endWord, wordList) {
+    let adj = {};
+    if (!wordList.includes(beginWord)) {
+        wordList.push(beginWord);
+    }
+
+
+    for (let i = 0; i < wordList.length; i++) {
+        adj[wordList[i]] = [];
+    }
+
+    for (let i = 0; i < wordList.length; i++) {
+        for (let j = 0; j < wordList.length; j++) {
+            if (isAPair(wordList[i], wordList[j])) {
+                adj[wordList[i]].push(wordList[j]);
+            }
+
+        }
+    }
+
+    // можно заменить на хешмап, где ключом будет паттерн hot -> *ot - h*t - ho* таким образом сложность будет O(n*amountLetter^2)
+    function isAPair(w1, w2) {
+        if (w1.length !== w2.length) {
+            return false;
+        }
+
+        let amount = 0;
+        let i = 0;
+        while (i < w1.length) {
+            if (w1[i] === w2[i]) {
+                amount++;
+            }
+        }
+
+        return amount === w1.length - 1;
+    }
+
+    let visited = new Set();
+    let steps = 1;
+
+    visited.add(beginWord);
+
+    let q = [beginWord];
+
+    while (q.length) {
+        let amount = q.length;
+        for (let i = 0; i < amount; i++) {
+            let curr = q.shift();
+
+            if (curr === endWord) {
+                return steps;
+            }
+
+            for (let j = 0; j < adj[curr].length; j++) {
+                if (!visited.has(adj[curr][j])) {
+                    q.push(adj[curr][j]);
+                    visited.add(adj[curr][j]);
+                }
+            }
+
+        }
+
+        steps++;
+    }
+
+    return 0;
+
+};
 
 export function alienOrder(words) {
     let graph = {};
@@ -397,3 +558,149 @@ export function alienOrder(words) {
 
     return res.reverse().join('');
 }
+
+
+// UnionFind алгоритм - мы храним список вершин parents и rank (колво, сколько у вершины детей, изначально по 1). Фунция Union - соединяет ноды, находя родителей, если родители одинаковые у двух вершин, значит, они уже соеденены. Если нет, сравниваем родителей и соединяем к тому, кто больше по ранку (в списке родителей меньшего заменяем на того, кто больше, и ранк у большего увеличиваем на то колво, сколько у ребенка). Функция Find - берем родителя по ноде par[edge], проходимся в цикле while пока не найдем родителя, равному текущему элемента (при каждой итерации след родитель - равен родителю через один, и текущий элемент равен родителю, таким образом передвигаемся наверх по цепочке); Если наша функция union вернула false, что значит, мы нашли звенья с одним родителем и они соеденены, возвращаем это соединение.
+export var findRedundantConnection = function (edges) {
+    let par = [];
+    let rank = [];
+
+    for (let i = 0; i < edges.length + 1; i++) {
+        par.push(i);
+        rank.push(1);
+    }
+
+    function find(edge) {
+        let p = par[edge];
+
+        while (p !== par[p]) {
+            par[p] = par[par[p]];
+            p = par[p];
+        }
+
+        return p;
+    };
+
+    function union(e1, e2) {
+        let p1 = find(e1);
+        let p2 = find(e2);
+
+        if (p1 === p2) {
+            return false;
+        }
+
+        if (rank[p1] < rank[p2]) {
+            p1, p2 = p2, p1;
+        }
+
+        par[p2] = p1;
+        rank[p1] += rank[p2];
+        console.log(par, rank);
+        return true;
+    };
+
+    for (let i = 0; i < edges.length; i++) {
+        if (!union(edges[i][0], edges[i][1])) {
+            return edges[i];
+        }
+    }
+
+
+    return [];
+};
+
+
+//
+// We have:
+// points[i] = [xi, yi]
+// cost of connecting = |xi - xj| + |yi - yj|
+//
+// Find: min cost to connect all points
+
+// ? can be < 0 coordinates
+// ? cab be emty points arr?
+// ? check correct array value [1, 1] or [n, k]
+// ? points on the same potision?
+
+// Solutions:
+// 1. Brute force - take node and try to connect with every point and find min, and save this -> skip edges already visited
+// Time: O()
+// Memo: O()
+// 2. Prims Algo - для нахождения минимального пути в undirected графе. Берется исписок смежности  adj list, в котором - граф : [стоимость до графа, граф]. Используется min heap для хранения минимального пути и visited. Пока у мы не посетим все ноды, получать минимальное из heap [cost, node], проверяем посещали ли уже, если нет, то складываем в общую стоимость его стоимость, добавляем в visited   и проходимся по его соседям, которые еще не посетили и добавляем их в heap;
+// Time: O(n2logN)
+// Space: O(n2)
+
+// Test:
+//
+
+var minCostConnectPoints = function (points) {
+
+};
+
+
+/*
+
+class Solution:
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        N = len(grid)
+        visit = set()
+        minH = [[grid[0][0], 0, 0]]  # (time/max-height, r, c)
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+
+        visit.add((0, 0))
+        while minH:
+            t, r, c = heapq.heappop(minH)
+            if r == N - 1 and c == N - 1:
+                return t
+            for dr, dc in directions:
+                neiR, neiC = r + dr, c + dc
+                if (
+                    neiR < 0
+                    or neiC < 0
+                    or neiR == N
+                    or neiC == N
+                    or (neiR, neiC) in visit
+                ):
+                    continue
+                visit.add((neiR, neiC))
+                heapq.heappush(minH, [max(t, grid[neiR][neiC]), neiR, neiC])
+
+*/
+
+
+/* Bellman Ford alg - DFS - для нахождения минимального по стоимости пути в направленном взвешенном графе(вес на путях).Смысл - проходимся по каждому узлу и записываем мин стоимость, сколько нужно для того, чтобы попасть до этого узла.Исп темп хешмапа на каждой итерации dfs, чтоб сохранить ее текущую стоимость, изменять ее на мин, но использовать изначальные параметры стоимости, полученные на предыд шаге.
+*/
+
+export var findCheapestPrice = function (n, flights, src, dst, k) {
+    let prices = {};
+
+    for (let i = 0; i < n; i++) {
+        prices[i] = Infinity;
+    }
+
+    prices[src] = 0;
+
+    k++;
+
+    while (k) {
+        let temp = {...prices};
+
+        for (let i = 0; i < flights.length; i++) {
+            let s = flights[i][0];
+            let d = flights[i][1];
+            let p = flights[i][2];
+
+
+            if (prices[s] === Infinity) {
+                continue;
+            }
+
+            temp[d] = Math.min(prices[s] + p, temp[d]);
+
+        }
+        prices = {...temp};
+        k--;
+    }
+    console.log(prices[dst], Infinity, prices[dst] === Infinity)
+    return prices[dst] === Infinity ? -1 : prices[dst];
+};

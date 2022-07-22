@@ -12,7 +12,7 @@ export function getMaxProfit(nums: number[]) {
     return biggestPrice;
 }
 
-var totalFruit = function (fruits) {
+export var totalFruit = function (fruits) {
 
     // [1,2,3,2,2]
     //  s
@@ -29,7 +29,8 @@ var totalFruit = function (fruits) {
     while (e < fruits.length) {
         basket.set(fruits[e], e) // сохраняем фрукт и индекс, когда в посл раз его видели
 
-        if (basket.size > 2) { // если наткнулись на третий, значит, находим его и когда он в посл раз встречался, через поиск того, у кого встречался раньше всего и удаляем его, смещая указатель на старт
+        if (basket.size > 2) {
+            //если наткнулись на третий, значит, последовательность закончилась и надо удалить фрукт, который встречался раньше чего и сдвинуть указатель старта текущей последоватльеонсть в начало
 
             let min = 1000;
             let minKey = 1000;
@@ -52,36 +53,7 @@ var totalFruit = function (fruits) {
     return max;
 };
 
-var maxSlidingWindow = function (nums, k) {
-    let l = 0;
-    let r = 0;
-    let res = [];
-    let q = [];
-
-    while (r < nums.length) {
-        console.log(q, l, r, nums[r])
-        while (q.length && nums[q[q.length - 1]] < nums[r]) {
-            q.pop();
-        }
-
-        q.push(r);
-
-        if (l > q[0]) {
-            q.shift();
-        }
-
-        if (r + 1 >= k) {
-            res.push(nums[q[0]])
-            l++;
-        }
-
-        r++;
-    }
-
-    return res;
-};
-
-var longestStrChain = function (words) {
+export var longestStrChain = function (words) {
     const len = words.length;
     words.sort((a, b) => a.length - b.length);
     // dp[i] meaning: the longest string chain length ending with sorted words[i]
@@ -126,12 +98,10 @@ var longestStrChain = function (words) {
     for (let i = 0; i < dp.length; i++) {
         max = Math.max(max, dp[i]);
     }
-    return max
-
-
+    return max;
 };
 
-var lengthOfLongestSubstring = function (s) {
+export var lengthOfLongestSubstring = function (s) {
     let l = 0;
     let r = 0;
     let max = 0;
@@ -151,4 +121,64 @@ var lengthOfLongestSubstring = function (s) {
     }
 
     return max;
+};
+
+export var minWindow = function (str, target) {
+    const hash = target.split('').reduce((acc, val) => {
+        if (!acc[val]) acc[val] = 0;
+        acc[val] += 1;
+        return acc;
+    }, {})
+
+    let start = 0;
+    let min = Infinity;
+    let matched = 0;
+    let subStringStart = null;
+
+    for (let i = 0; i < str.length; i++) {
+        let rightChar = str[i];
+
+        if (rightChar in hash) hash[rightChar] -= 1;
+        if (hash[rightChar] >= 0) matched += 1;
+
+        while (matched === target.length) {
+            if (i - start + 1 < min) {
+                subStringStart = start;
+                min = i - start + 1;
+            }
+
+            let leftChar = str[start];
+            start += 1;
+
+            if (leftChar in hash) {
+                if (hash[leftChar] === 0) matched -= 1;
+                hash[leftChar] += 1;
+            }
+        }
+    }
+    return min === Infinity ? '' : str.substring(subStringStart, subStringStart + min);
+};
+
+export var maxSlidingWindow = function (nums, k) {
+    let l = 0;
+    let r = 0;
+    let res = [];
+    let q = [];
+
+    while (r < nums.length) {
+        while (q.length && nums[q[q.length - 1]] < nums[r]) {
+            q.pop();
+        }
+
+        q.push(r);
+
+        if (r + 1 >= k) {
+            res.push(nums[q[0]])
+            l++;
+        }
+
+        r++;
+    }
+
+    return res;
 };

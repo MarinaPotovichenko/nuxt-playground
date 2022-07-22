@@ -26,6 +26,7 @@ import {
     productExceptSelf,
     isValidSudoku,
     longestConsecutive,
+    twoSum2,
 } from '~/utils/1-arrays';
 import { Task } from '~/types/Task';
 
@@ -120,7 +121,7 @@ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]`,
             solution: productExceptSelf.toString().split('\n').join('<br/>'),
             remember: `
                  1. O(n*m), O(n)
-                 2. Суммировать и поделить на нужный элемент O(n)
+                 2. Умножить все и поделить на нужный элемент O(n)
                  3. Сперва получить постфикс значения - это с первого элемента перемножается
                  друг на друга и записывается в массив результат со сдвигом на один элемент вправо.
                  Аналогично с конца постфикс, но уже умножая на текущее значение в результате.
@@ -149,6 +150,22 @@ You must write an algorithm that runs in O(n) time.`,
             remember: `
                     1. Cортировка, пройтись в цикле проверяя разницу элементов O(nlogn) <br>
                     2. Проверить каждый элемент, является ли он началом последовательности (есть ли в массиве current-1 значение), если нет, то проверяем, есть ли у него последующие элементы, подсчитывая колво таких = O(2n) = O(n), потому что проходиться будем только дважды
+                `,
+        },
+        {
+            title: 'Two Sum II - Input Array Is Sorted',
+            description: `Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+
+Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+
+The tests are generated such that there is exactly one solution. You may not use the same element twice.
+
+Your solution must use only constant extra space.`,
+            solution: twoSum2.toString().split('\n').join('<br/>'),
+            remember: `
+                   // 1. O(m*n) time
+                    // 2. O(m*n) time, but O(n) если будем использовать текущий массив, и записывать остаток, а птом находить этот остаток
+                    // 3. O(n) если проходить по циклу, испольозвать указатель слева и  справа, и двигать его пока не найдем сумму или колво. Двигать - если сумма больше, двигаем конец меньше, если меньше - то начало ближе к концу.
                 `,
         },
     ];
