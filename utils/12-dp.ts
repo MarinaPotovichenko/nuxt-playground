@@ -1,5 +1,4 @@
 export function climbStairsOne(n) {
-
     let amount = 0;
 
     function countFun(n) {
@@ -23,6 +22,13 @@ export function climbStairsOne(n) {
 
 };
 
+// 0 1 2 3 4
+//         l=1 r=0
+//         temp
+//       l=l+r
+//          r=temp
+//       l  r
+
 export function climbStairsTwo(n) {
 
     let l = 1;
@@ -35,6 +41,33 @@ export function climbStairsTwo(n) {
     }
 
     return l;
+};
+
+export var minCostClimbingStairs = function (cost) {
+    // 1. make a des-n tree.
+    //                        ()
+    //              1                100
+    //          100     1          1     1
+    //      1      1   1   1    ...
+    //
+    // Time: O(2^n) Memo: O(1)
+
+    // 2. des-n tree + hashmap
+    // Time: O(n) Memo: O(1)
+
+    // 3. DP - bottom-up - cost[i] = min cost
+    // [10,15,20] 0
+    //         20
+    //      15
+    //  25
+
+    cost.push(0)
+    for (let i = cost.length - 3; i >= 0; i--) {
+        cost[i] += Math.min(cost[i + 1], cost[i + 2]);
+
+    }
+
+    return Math.min(cost[0], cost[1]);
 };
 
 export function maxRob(nums) {
@@ -295,7 +328,6 @@ export function wordBreakDFS(s, wordDict) {
         return dfs(i + 1, word) //we didn't find our word in dict, to just go next letter
     }
 
-
     return dfs(0, ''); // we will start from 0 pointer and from empty word
 };
 
@@ -411,3 +443,89 @@ export function longestCommonSubsequenceRec(text1, text2) {
 
     return solve(n - 1, m - 1);
 };
+
+export var longestCommonSubsequence = function (text1, text2) {
+    let m = text1.length,
+        n = text2.length,
+        DP = new Array(m + 1).fill(0).map((_) => new Array(n + 1).fill(0));
+
+    for (let x = m - 1; x >= 0; x--)
+        for (let y = n - 1; y >= 0; y--) {
+            if (text1[x] === text2[y]) {
+                DP[x][y] = 1 + DP[x + 1][y + 1];
+            } else {
+                DP[x][y] = Math.max(DP[x + 1][y], DP[x][y + 1]);
+            }
+        }
+
+    return DP[0][0];
+};
+
+export function maxProfit() {
+
+    // class Solution:
+    //     def maxProfit(self, prices: List[int]) -> int:
+    //         # State: Buying or Selling?
+    //         # If Buy -> i + 1
+    //         # If Sell -> i + 2
+
+    //         dp = {}  # key=(i, buying) val=max_profit
+
+    //         def dfs(i, buying):
+    //             if i >= len(prices):
+    //                 return 0
+    //             if (i, buying) in dp:
+    //                 return dp[(i, buying)]
+
+    //             cooldown = dfs(i + 1, buying)
+    //             if buying:
+    //                 buy = dfs(i + 1, not buying) - prices[i]
+    //                 dp[(i, buying)] = max(buy, cooldown)
+    //             else:
+    //                 sell = dfs(i + 2, not buying) + prices[i]
+    //                 dp[(i, buying)] = max(sell, cooldown)
+    //             return dp[(i, buying)]
+
+    //         return dfs(0, True)
+
+}
+
+
+
+// tree
+//                      0
+//              -1         +1
+//          -1      +1
+//
+// cache[i] = amount of variations
+
+/// Time O(2^n)
+// Memo:
+
+// tree + cache
+
+
+export var findTargetSumWays = function (nums, target) {
+    let dp = {};
+
+    function backtracking(i, sum) {
+        if (i === nums.length) {
+            return sum === target ? 1 : 0;
+        }
+
+        if (dp[`${i}, ${sum}`]) {
+            return dp[`${i}, ${sum}`];
+        }
+
+        dp[`${i}, ${sum}`] = backtracking(i + 1, sum - nums[i]) + backtracking(i + 1, sum + nums[i]);
+        return dp[`${i}, ${sum}`];
+    }
+
+    return backtracking(0, 0);
+};
+
+
+
+
+
+

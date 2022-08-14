@@ -210,55 +210,90 @@ export function surroundedRegions(board) {
 
 
 export function orangesRotting(grid) {
-    let gridCopy = [...grid];
-    let direction = [[0, 1], [1, 0], [-1, 0], [0, -1]];
-    let ROWS = grid.length;
-    let COLS = grid[0].length;
-    let amount = 0;
-    let visited = {};
+    /**
+     * class Solution:
+        def orangesRotting(self, grid: List[List[int]]) -> int:
+            q = collections.deque()
+            fresh = 0
+            time = 0
 
-    function bfs(i, j) {
-        let q = [[i, j]];
+            for r in range(len(grid)):
+                for c in range(len(grid[0])):
+                    if grid[r][c] == 1:
+                        fresh += 1
+                    if grid[r][c] == 2:
+                        q.append((r, c))
 
-        while (q.length) {
-            let [ci, cj] = q.shift();
+            directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+            while fresh > 0 and q:
+                length = len(q)
+                for i in range(length):
+                    r, c = q.popleft()
 
-
-
-            if (ci >= 0 && cj >= 0 && ci < ROWS && cj < COLS && gridCopy[ci][cj] !== 0 && !visited[`${ci} ${cj}`]) { //&& gridCopy[ci][cj] !== 2
-                visited[`${ci} ${cj}`] = true;
-                gridCopy[ci][cj] = 2;
-                amount = amount + 1;
-
-
-                direction.forEach(dir => {
-                    q.push([ci + dir[0], cj + dir[1]]);
-
-                });
-            }
-        }
-    }
-
-
-    for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < COLS; j++) {
-            if (gridCopy[i][j] === 2 && !visited[`${i} ${j}`] && amount === 0) {
-
-                bfs(j, j);
-            }
-        }
-    }
-
-    for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < COLS; j++) {
-            if (gridCopy[i][j] === 1) {
-                return -1;
-            }
-        }
-    }
+                    for dr, dc in directions:
+                        row, col = r + dr, c + dc
+                        # if in bounds and nonrotten, make rotten
+                        # and add to q
+                        if (
+                            row in range(len(grid))
+                            and col in range(len(grid[0]))
+                            and grid[row][col] == 1
+                        ):
+                            grid[row][col] = 2
+                            q.append((row, col))
+                            fresh -= 1
+                time += 1
+            return time if fresh == 0 else -1
+     */
 
 
-    return amount;
+
+    // let gridCopy = [...grid];
+    // let direction = [[0, 1], [1, 0], [-1, 0], [0, -1]];
+    // let ROWS = grid.length;
+    // let COLS = grid[0].length;
+    // let amount = 0;
+    // let visited = {};
+
+    // function bfs(i, j) {
+    //     let q = [[i, j]];
+
+    //     while (q.length) {
+    //         let [ci, cj] = q.shift();
+
+    //         if (ci >= 0 && cj >= 0 && ci < ROWS && cj < COLS && gridCopy[ci][cj] !== 0 && !visited[`${ci} ${cj}`]) { //&& gridCopy[ci][cj] !== 2
+    //             visited[`${ci} ${cj}`] = true;
+    //             gridCopy[ci][cj] = 2;
+    //             amount = amount + 1;
+
+
+    //             direction.forEach(dir => {
+    //                 q.push([ci + dir[0], cj + dir[1]]);
+    //             });
+    //         }
+    //     }
+    // }
+
+
+    // for (let i = 0; i < ROWS; i++) {
+    //     for (let j = 0; j < COLS; j++) {
+    //         if (gridCopy[i][j] === 2 && !visited[`${i} ${j}`] && amount === 0) {
+
+    //             bfs(j, j);
+    //         }
+    //     }
+    // }
+
+    // for (let i = 0; i < ROWS; i++) {
+    //     for (let j = 0; j < COLS; j++) {
+    //         if (gridCopy[i][j] === 1) {
+    //             return -1;
+    //         }
+    //     }
+    // }
+
+
+    // return amount;
 
 };
 

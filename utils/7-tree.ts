@@ -74,6 +74,43 @@ export function getMaxDepthIterativeDFS(node) {
 }
 
 
+export var goodNodes = function (root) {
+
+    let amount = 0;
+
+    function dfs(node, max) {
+        if (!node) {
+            return;
+        }
+
+        if (node.val >= max) {
+            amount++;
+            max = node.val;
+        }
+
+        dfs(node.right, max);
+        dfs(node.left, max);
+    }
+
+    dfs(root, -100000);
+
+    return amount;
+};
+
+export function validate(root, max, min) {
+    if (!root) {
+        return true;
+    } else if (
+        (max !== null && root.val >= max) ||
+        (min !== null && root.val <= min)
+    ) {
+        return false;
+    } else
+        return (
+            validate(root.left, root.val, min) &&
+            validate(root.right, max, root.val)
+        );
+}
 
 export function isSameTreeBFS(t1, t2) {
     let isSame = true;

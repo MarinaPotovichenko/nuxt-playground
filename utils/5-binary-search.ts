@@ -31,7 +31,41 @@ export function getIndexOfTargetValue(arr: number[], target: number) {
     return -1;
 }
 
-var findMedianSortedArrays = function (nums1, nums2) {
+
+export var searchMatrix = function (matrix, target) {
+    let i = 0;
+    let cols = matrix[0].length;
+    let rows = matrix.length;
+
+    for (let j = 0; j < rows; j++) {
+        if (target <= matrix[j][cols - 1] && target >= matrix[j][0]) {
+            i = j;
+            break;
+        }
+    }
+
+    let l = 0;
+    let mid = 0;
+    let r = cols - 1;
+
+    while (l <= r) {
+        mid = Math.floor((l + r) / 2);
+
+        if (matrix[i][mid] === target) {
+            return true;
+        }
+
+        if (matrix[i][mid] < target) {
+            l = mid + 1;
+        } else {
+            r = mid - 1;
+        }
+    }
+
+    return false;
+};
+
+export var findMedianSortedArrays = function (nums1, nums2) {
 
     // ? могут ли быть оба или один пустой массив
     // ? проверить порядок
@@ -80,6 +114,34 @@ var findMedianSortedArrays = function (nums1, nums2) {
         }
     }
 
+};
+
+
+export var findMin = function (nums) {
+    let l = 0;
+    let r = nums.length - 1;
+    let mid = 0;
+    let res = 10000;
+
+    while (l <= r) {
+
+        if (nums[l] < nums[r]) {
+            res = Math.min(res, nums[l]);
+            break;
+        }
+
+        mid = Math.floor((l + r) / 2);
+        res = Math.min(res, nums[mid]);
+
+        console.log(mid);
+        if (nums[mid] >= nums[l]) {
+            l = mid + 1;
+        } else {
+            r = mid - 1;
+        }
+    }
+
+    return res;
 };
 
 

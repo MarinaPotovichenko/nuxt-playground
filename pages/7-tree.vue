@@ -24,10 +24,12 @@ import {
     getMaxDepthBFS,
     getMaxDepthDFS,
     getMaxDepthIterativeDFS,
+    goodNodes,
     isSameTreeBFS,
     isSameTreeDFS,
     isSameTreeIterativeDFS,
     isSubTreeExist,
+    validate,
 } from '~/utils/7-tree';
 import { treeTrue, treeDepth3, treeDepth4, treeDepth2, subtree, subtree2 } from '~/utils/BinaryTreeTask/TreeTrue';
 
@@ -48,6 +50,35 @@ export default class Tree extends Vue {
             examples: [`Input: root = [4,2,7,1,3,6,9] <br> Output: [4,7,2,9,6,3,1]`],
             remember: `Рекурсия, спускаться по левому и правому вниз, меняя их местами`,
             results: [`Input: root = [4,2,7,1,3,6,9] <br> Output: ${getInvertedTree(treeTrue)}`],
+        },
+        {
+            title: 'Count Good Nodes in Binary Tree',
+            description: `
+
+            Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+
+            Return the number of good nodes in the binary tree.
+
+            Input: root = [3,1,4,3,null,1,5]
+            Output: 4
+            `,
+            solution: goodNodes.toString().split('\n').join('<br/>'),
+        },
+        {
+            title: '98. Validate Binary Search Tree',
+            description: `
+                Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+
+                A valid BST is defined as follows:
+
+                The left subtree of a node contains only nodes with keys less than the node's key.
+                The right subtree of a node contains only nodes with keys greater than the node's key.
+                Both the left and right subtrees must also be binary search trees.
+            `,
+            solution: validate.toString().split('\n').join('<br/>'),
+            remember: `
+                Рекурсивный DFS. Проверяем каждый узел, попадает ли он в промежуток значений. Корень - от -бескон до +бескон. Левый от -бескон до значения родителя. Правый от значения родителя, до бскон. Каждую итерацию изменяем макс и мин.
+            `,
         },
         {
             title: 'Maximum Depth of Binary Tree',

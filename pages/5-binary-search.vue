@@ -18,7 +18,13 @@
 <script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator';
 import { Task } from '~/types/Task';
-import { getIndexOfTargetValue, minEatingSpeed } from '~/utils/5-binary-search';
+import {
+    findMedianSortedArrays,
+    findMin,
+    getIndexOfTargetValue,
+    minEatingSpeed,
+    searchMatrix,
+} from '~/utils/5-binary-search';
 
 @Component({
     head: {
@@ -66,6 +72,41 @@ export default class BinarySearch extends Vue {
             ],
         },
         {
+            title: 'Search a 2D Matrix',
+            description: `
+            Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix. This matrix has the following properties:
+
+            Integers in each row are sorted from left to right.
+            The first integer of each row is greater than the last integer of the previous row.
+`,
+            solution: `
+            ${searchMatrix.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+                найти строку, потом binary search
+            `,
+        },
+        {
+            title: 'Find Minimum in Rotated Sorted Array',
+            description: `
+           Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
+
+            [4,5,6,7,0,1,2] if it was rotated 4 times.
+            [0,1,2,4,5,6,7] if it was rotated 7 times.
+            Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+
+            Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+
+            You must write an algorithm that runs in O(log n) time.
+            `,
+            solution: `
+            ${findMin.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+                Минимальный всегда слева. Если массив отсортирован, берем левый эл, сравниваем с мин. Если нет, то считаем мид, проверяем с мин. Если мид больше левого, значит, еще меньше есть справа. Если нет, то идем влево.
+            `,
+        },
+        {
             title: 'Koko Eating Bananas',
             description: `
             Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. The guards have gone and will come back in h hours.
@@ -82,6 +123,20 @@ export default class BinarySearch extends Vue {
             `,
             remember: `
             Binary search от 1 до макс колва бананов в корзинке.
+            `,
+        },
+        {
+            title: 'Median of Two Sorted Arrays',
+            description: `
+            Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+            The overall run time complexity should be O(log (m+n))
+            `,
+            solution: `
+            ${findMedianSortedArrays.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+            без смерживания, найти сперва половинки в обоях массивов, после чего взять самый правый элемент левой части и самый левый элемент правой части (если четное колво), если нечетное то наименьший
             `,
         },
     ];

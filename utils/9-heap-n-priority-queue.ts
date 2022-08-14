@@ -27,7 +27,7 @@ class MaxHeap {
         //     this.heap[0] = num;
         //     this.siftDown(0);
         // }
-        // console.log(this.heap)
+
     }
 
     remove() {
@@ -48,7 +48,6 @@ class MaxHeap {
         while (this.length > 1) {
             let l = this.heap[0];
             let r = this.heap[1];
-            console.log('1', r, l)
 
             this.remove();
             this.remove();
@@ -215,3 +214,123 @@ function PriorityQueue() {
         }
     }
 }
+
+
+// add[
+//     13, 10, 12, 1,
+//     9, 5, 11
+// ] 13 2
+// heapify[
+//     13, 10, 12, 1,
+//     9, 5, 11, 13
+// ] i = 3 l = 7 r = 8
+// lag = 7 i = 3
+// heapify[
+//     13, 10, 12, 13,
+//     9, 5, 11, 1
+// ] i = 7 l = 15 r = 16
+// lag = 7 i = 7
+// heapify[
+//     13, 10, 12, 13,
+//     9, 5, 11, 1
+// ] i = 2 l = 5 r = 6
+// lag = 2 i = 2
+// heapify[
+//     13, 10, 12, 13,
+//     9, 5, 11, 1
+// ] i = 1 l = 3 r = 4
+// lag = 3 i = 1
+// heapify[
+//     13, 13, 12, 10,
+//     9, 5, 11, 1
+// ] i = 3 l = 7 r = 8
+// lag = 3 i = 3
+// heapify[
+//     13, 13, 12, 10,
+//     9, 5, 11, 1
+// ] i = 0 l = 1 r = 2
+// lag = 0 i = 0
+class MaxHeap {
+    constructor(array, k) {
+        this.size = k;
+        this.n = 0;
+        this.heap = [];
+
+        array.forEach(el => {
+            this.add(el);
+        })
+    }
+
+    heapify(i) {
+        let lag = i; // пусть текущий будет наибольшим
+        let l = i * 2 + 1;
+        let r = i * 2 + 2;
+
+        if (l < this.n && this.heap[l] > this.heap[lag]) { // проверяем с левым, кто больше
+            lag = l;
+        }
+
+        if (r < this.n && this.heap[r] > this.heap[lag]) { // проверяем с правым, кто больше
+            lag = r;
+
+        }
+
+        if (lag !== i) { // если текущий элемент не наибольший, то меняем местами и проходимся дальше
+            let temp = this.heap[i];
+            this.heap[i] = this.heap[lag];
+            this.heap[lag] = temp;
+
+            this.heapify(lag);
+        }
+    }
+
+    add(el) {
+        if (this.n < this.size) {
+            this.n += 1;
+            this.heap.push(el); // добавляем в конец
+
+            for (let i = Math.floor(this.n / 2) - 1; i >= 0; i--) { // проходимся по всем родителям с конца
+                this.heapify(i);
+            }
+        } else if (el < this.max()) {
+            this.shift();
+            this.heap.push(el);
+
+            for (let i = Math.floor(this.n / 2) - 1; i >= 0; i--) {
+                this.heapify(i);
+            }
+        }
+    }
+
+    remove(i) {
+        this.heap[i] = this.heap[this.n - 1]; //меняем местами последний и который удаляем по индексу
+        this.heap.pop();
+        this.n--;
+
+        for (let i = Math.floor(this.n / 2 - 1); i >= 0; i--) {  // проходимся по всем родителям с конца
+            this.heapify(i);
+        }
+    }
+
+    shift() {
+        return this.n > 0 ? this.heap.shift() : null;
+    }
+
+    max() {
+        return this.heap[0];
+    }
+}
+
+var kthSmallest = function (matrix, k) {
+    let arr = [];
+
+    matrix.forEach(row => {
+        arr = [...arr, ...row];
+    });
+
+    let heap = new MaxHeap(arr, k)
+
+    heap.remove(1);
+
+    return heap.max();
+};

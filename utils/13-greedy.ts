@@ -55,3 +55,47 @@ export function canJumpGreegy(nums) {
     return goal === 0;
 };
 
+
+
+export var jump2DP = function (nums) {
+
+    let dp = new Array(nums.length).fill(Infinity);
+
+    dp[nums.length - 1] = 0;
+
+    for (let i = nums.length - 2; i >= 0; i--) {
+        console.log(dp)
+        if (i + nums[i] >= nums.length) {
+            dp[i] = 1;
+        } else {
+            let tmp = nums[i];
+            while (tmp) {
+                dp[i] = Math.min(dp[i + tmp] + 1, dp[i]);
+                tmp--;
+            }
+        }
+    }
+
+    return dp[0];
+};
+
+
+export var jump2Greedy = function (nums) {
+    let res = 0;
+    let r = 0;
+    let l = 0;
+
+    while (r < nums.length - 1) {
+        let max = 0;
+        for (let i = l; i < r + 1; i++) {
+            max = Math.max(max, nums[i] + i);
+        }
+
+        l = r + 1;
+        r = max;
+        res++;
+
+    }
+
+    return res;
+};

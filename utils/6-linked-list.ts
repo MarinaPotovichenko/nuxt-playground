@@ -28,10 +28,10 @@ export function getReversedLLImproved(node) {
     let prev = null;
     // complac O(n), mem O(1)
     while (curr) {
-        let temp = curr.node;
-        curr.node = prev;
-        prev = curr;
-        curr = temp;
+        let temp = curr.node; // сохраняем послед
+        curr.node = prev; // меняем местами будущее и предыд
+        prev = curr; //сдвиг прев вперед
+        curr = temp; //сдвиг текущего вперед
     }
 
     return prev;
@@ -39,7 +39,6 @@ export function getReversedLLImproved(node) {
 
 
 export function getReversedLLImproved2(head) { // TODO learn again
-    console.log('1', head);
     if (!head) {
         return null;
     }

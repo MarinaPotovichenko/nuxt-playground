@@ -26,12 +26,16 @@ import {
     climbStairsTwo,
     coinChange,
     countSubstrings,
+    findTargetSumWays,
     lengthOfLIS,
+    longestCommonSubsequence,
     longestCommonSubsequenceDP,
     longestCommonSubsequenceRec,
     longestPalindrome,
     maxProduct,
+    maxProfit,
     maxRob,
+    minCostClimbingStairs,
     numDecodings,
     rob2,
     wordBreakDFS,
@@ -58,9 +62,48 @@ export default class DynamicProgramming extends Vue {
             `,
             remember: `
             1. Составить дерево и посчитать колво (2^n) <br>
-2. Мемоизация. Построить только одну ветвь, сохранять в хешсете ноду и колво сколько мы уже посичтали, и проверять, есть ли у нас это уже значение (n) <br>
-3. Рекурсия. Бейс кейс, n < 0, n = 0 (прибавляем колво), вызываем ф-цию (n-1) и  (n-2), возвращаем колво (n) <br>
-4. Bottom up. Идти с конца, где последний шаг 0 и предпоследний 1, и посчитать фибоначи n-1 раз (слева в темп, слева элемент = л+п, право = темп) (n) <br>
+            2. Мемоизация. Построить только одну ветвь, сохранять в хешсете ноду и колво сколько мы уже посичтали, и проверять, есть ли у нас это уже значение (n) <br>
+            3. Рекурсия. Бейс кейс, n < 0, n = 0 (прибавляем колво), вызываем ф-цию (n-1) и  (n-2), возвращаем колво (n) <br>
+            4. Bottom up. Идти с конца, где последний шаг 0 и предпоследний 1, и посчитать фибоначи n-1 раз (слева в темп, слева элемент = л+п, право = темп) (n) <br>
+
+            // 0 1 2 3 4
+            //         l=1 r=0
+            //         temp
+            //       l=l+r
+            //          r=temp
+            //       l  r
+            `,
+        },
+        {
+            title: 'Min Cost Climbing Stairs',
+            description: `
+            You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps.
+
+            You can either start from the step with index 0, or the step with index 1.
+
+            Return the minimum cost to reach the top of the floor.
+            `,
+            solution: `
+            ${minCostClimbingStairs.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+             // 1. make a des-n tree.
+            //                        ()
+            //              1                100
+            //          100     1          1     1
+            //      1      1   1   1    ...
+            //
+            // Time: O(2^n) Memo: O(1)
+
+            // 2. des-n tree + hashmap
+            // Time: O(n) Memo: O(1)
+
+            // 3. DP - bottom-up - cost[i] = min cost
+            // [10,15,20] 0
+            //         20
+            //      15
+            //  25
+
             `,
         },
         {
@@ -169,7 +212,7 @@ export default class DynamicProgramming extends Vue {
             `,
             remember: `
               bottom-up: DP кеш массив из 1, начиная с конца массива находить длину максимальной последовательности для каждого элемента.
-              Как только нашли элемент, максимум будет сам элемент, после чего проходимся в цикле до конца. Если находим элемент, который больше текущего
+              Как только нашли элемент, максимум будет сам элемент, после чего проходимся в цикле c текущего элемента обратно до конца. Если находим элемент, который больше текущего
               проверяем, чья последовательность больше, текущего элемента либо того, что нашли + 1, записываем в сам элемент. Находим максимум их всех максимумов.
               <br>
             `,
@@ -190,10 +233,114 @@ export default class DynamicProgramming extends Vue {
             solution: `
             ${longestCommonSubsequenceDP.toString().split('\n').join('<br/>')} <br><br>
             ${longestCommonSubsequenceRec.toString().split('\n').join('<br/>')} <br><br>
+            ${longestCommonSubsequence.toString().split('\n').join('<br/>')} <br><br>
             `,
             remember: `
                 <br> Рекурсия. Бейс кейс - вышли за пределы. Если нашли такой элемент, возвращает 1 + рекурсия (i-1, j-1) чтобы проверять следующие элементы. Если не нашли, возвращаем максимум двух рекурсий( сдвиг по столбцу и сдвиг по строке) <br>
-              bottom-up: DP кеш массив колву символов массива, с которым сравнивается, идти с конца. Каждый элемент - количество совпадений подряд (1 + предыд значение dp). Если какую-то букву не нашли, там остается ноль. Итого в первом элементе будет сумма.
+
+              bottom-up: DP кеш массив колву символов массива, с которым сравнивается, идти с конца. Каждый элемент - если буквы совпадают 1+dp[i+1][j+1], если нет, то максимум между нижним и правым в матрице значении. Итого в первом элементе будет сумма.
+            `,
+        },
+        {
+            title: '309. Best Time to Buy and Sell Stock with Cooldown',
+            description: `
+            You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+            Find the maximum profit you can achieve. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times) with the following restrictions:
+
+            After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day).
+            Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
+
+            Example 1:
+            Input: prices = [1,2,3,0,2]
+            Output: 3
+            Explanation: transactions = [buy, sell, cooldown, buy, sell]
+            `,
+            solution: `
+            ${maxProfit.toString().split('\n').join('<br/>')} <br><br>
+
+            `,
+            remember: `
+                Дерево решений, где мы можем либо купить и пропустить, либо продать и пропустить.
+                Рекурсия DFS(index, true) + Caching DP(i, buy/sell). Бейс кейс - вышли за пределы. Либо данное значение уже есть в кеше - отдаем его.
+                true = buy
+                false = sell
+
+
+                cooldown = dfs(i+1, operation)
+
+                если покупаем или продаем, то получаем значение и берем макс между ним и cooldown, это кешируем.
+
+                возвращаем кеш значение.
+            `,
+        },
+        {
+            title: '518. Coin Change 2',
+            description: `
+            You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+            Return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0.
+
+            You may assume that you have an infinite number of each kind of coin.
+
+            The answer is guaranteed to fit into a signed 32-bit integer.
+
+            Example 1:
+
+            Input: amount = 5, coins = [1,2,5]
+            Output: 4
+            Explanation: there are four ways to make up the amount:
+            5=5
+            5=2+2+1
+            5=2+1+1+1
+            5=1+1+1+1+1
+            `,
+            solution: `
+                ${maxProfit.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+                5 4 3 2 1 0
+            1        ...  1
+            2       1 1 0 1
+            5   1 0 0 0 0 1
+
+
+            Проходимся справа снизу, определяя, текущая ячейка = текущее колво-монетка (получаем коорду) + если мы не используем эту мотнетку, используем предыд значение снизу.
+            `,
+        },
+
+        {
+            title: '518. Coin Change 2',
+            description: `
+           You are given an integer array nums and an integer target.
+
+            You want to build an expression out of nums by adding one of the symbols '+' and '-' before each integer in nums and then concatenate all the integers.
+
+            For example, if nums = [2, 1], you can add a '+' before 2 and a '-' before 1 and concatenate them to build the expression "+2-1".
+            Return the number of different expressions that you can build, which evaluates to target.
+
+
+
+            Example 1:
+
+            Input: nums = [1,1,1,1,1], target = 3
+            Output: 5
+            Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3.
+            -1 + 1 + 1 + 1 + 1 = 3
+            +1 - 1 + 1 + 1 + 1 = 3
+            +1 + 1 - 1 + 1 + 1 = 3
+            +1 + 1 + 1 - 1 + 1 = 3
+            +1 + 1 + 1 + 1 - 1 = 3
+            `,
+            solution: `
+                ${findTargetSumWays.toString().split('\n').join('<br/>')} <br><br>
+            `,
+            remember: `
+              Сохраняем кеш DP. Рекурсия + backtracking. Бейз кейсы - вышли за пределы, если сумма равна таркету, то возвр 1, иначе 0.
+
+              Если есть в кеше значение, возвращаем его.
+
+              Кешируем и после возвращаем сумму вызовов рекурсий (сдвинули указатель вправо, и вычли, и прибавили значение)
             `,
         },
     ];
